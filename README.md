@@ -1,2 +1,1 @@
-
-Voorbeeld voor mark
+Example
