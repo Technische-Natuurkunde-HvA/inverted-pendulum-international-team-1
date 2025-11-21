@@ -15,7 +15,7 @@ double RPM;        // measured frequency
 
 double output = 0;          // motor output value
 
-int PeriodMS = 200;
+int PeriodMS = 1000;
 
 void countPulse();
 
@@ -47,15 +47,15 @@ void loop() {
   }
   analogWrite(enablePin, abs(output));
 
-  // Frequency calculation every 0.5 seconds
+  // Frequency calculation every 0.2 seconds
   if (millis() - lastTime >= 200) {
     noInterrupts();
     int count = pulseCount;
     pulseCount = 0;
     interrupts();
 
-    frequency = count / (pulsesPerRevolution*0.5); // frequency in Hz
-    RPM = frequency * 60 / 9,6;
+    frequency = count / (pulsesPerRevolution*0.2); // frequency in Hz
+    RPM = frequency * 60 / 9.6;
 
     //Serial.print("Output: ");
     Serial.print(output);
@@ -65,8 +65,8 @@ void loop() {
 
     lastTime = millis();
   }
-  delay(PeriodMS);
-  i++;
+    delay(PeriodMS);
+    i++;
   }
 }
 
