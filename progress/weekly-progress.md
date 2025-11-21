@@ -11,7 +11,7 @@ Use the GitHub repository to store important project files (code, visuals includ
 
 ---
 
-# Week 1
+# Week 2
 
 ## 1. Progress description
 The code increments the pwm value every 1s taking 5 measuremente per value 0-255.
