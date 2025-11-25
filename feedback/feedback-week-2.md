@@ -1,0 +1,6 @@
+- Great you uploaded a video!
+- Good to see you included your code into the weekly progress update. Please also save your code in the ‘code folder’, this will enable easier collaboration in the future.
+- You have correctly included the reduction ratio into your calculations of the PWM.
+- Are you sure the RPM will be measured 5 times per output value (with the current version of your code)? If so, how do you intend to process these 5 RPM values?
+- The motor needs time to accelerate to a new constant RPM after the output increases. You have included a delay, but is it at the appropriate moment?
+- How will you invert the direction of the motor?
