@@ -10,12 +10,14 @@ volatile int pulseCount = 0;  // pulse counter
 const int pulsesPerRevolution = 11; // pulses per rotation from each encoder wire
 
 unsigned long lastTime = 0;   // store last time measurement
-double frequency = 0; 
-double RPM;        // measured frequency
+double freq = 0; 
+double rpm = 0;        // measured frequency
 
-double output = 0;          // motor output value
+double out = 0;          // motor output value
 
-int PeriodMS = 1000;
+int PeriodMS = 500;
+
+int status = 0;
 
 void countPulse();
 
@@ -30,22 +32,27 @@ void setup() {
 
   Serial.begin(9600);
   lastTime = millis();
+  
+  delay(5000);
 }
 
 void loop() {
   
+  if(status == 0){
 
-  // Motor direction + speed
-  for(int i=0; i <=255; i++){
-  output = i;
-  if (output > 0) {
+    // Motor direction + speed
+    analogWrite(enablePin, abs(out));
+
+  for(int i=out; i>=-255; i--){
+  out = i;
+  if (out > 0) {
     digitalWrite(motorPin1, LOW);
     digitalWrite(motorPin2, HIGH);
   } else {
     digitalWrite(motorPin1, HIGH);
     digitalWrite(motorPin2, LOW);
   }
-  analogWrite(enablePin, abs(output));
+  analogWrite(enablePin, abs(out));
 
   // Frequency calculation every 0.2 seconds
   if (millis() - lastTime >= 200) {
@@ -54,20 +61,25 @@ void loop() {
     pulseCount = 0;
     interrupts();
 
-    frequency = count / (pulsesPerRevolution*0.2); // frequency in Hz
-    RPM = frequency * 60 / 9.6;
+    freq = count / (pulsesPerRevolution*0.5); // frequency in Hz
+    rpm = freq * 60.0 / 9.6;
 
-    //Serial.print("Output: ");
-    Serial.print(output);
-    Serial.print(",");
-    Serial.println(RPM);
-    //Serial.println(" RPM");
+    Serial.print("RPM:");
+    Serial.print(rpm);
+    Serial.print(";FREQ:");
+    Serial.print(freq);
+    Serial.print(";OUT:");
+    Serial.println(out);
 
     lastTime = millis();
   }
     delay(PeriodMS);
-    i++;
+    i--;
   }
+  }
+  status = 1;
+  analogWrite(enablePin, abs(0));
+
 }
 
 void countPulse() {
