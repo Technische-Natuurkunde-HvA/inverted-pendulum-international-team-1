@@ -219,7 +219,7 @@ finally:
 ```
 ## 3. Results
 ...
-
+We've made 3 graphs (PMW-RPM; PMW-FREQ; RPM-Time) in 3 distinct conditions, first one we had the pmw value go from 0 to 255 with an increment of 2 every 500ms, then go from -255 to 255 and the last one from 0 to -255 as is shown in the code above.
 
 ## 4. Reflection 
 ..
