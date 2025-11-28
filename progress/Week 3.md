@@ -301,4 +301,4 @@ finally:
 We've made 3 graphs (PMW-RPM; PMW-FREQ; RPM-Time) and 3 csv files in 3 distinct conditions, first one we had the pmw value go from 0 to 255 with an increment of 2 every 500ms, then go from -255 to 255 and the last one from 0 to -255 as is shown in the code above.
 
 ## 4. Reflection 
-..
+For next week, we will 3D-print a wheel with a larger diameter (200 mm instead of 150 mm). The back side of this wheel will be made completely flat to avoid wobbling and improve the overall stability of the system. We also discussed that later we will create angle-vs-time graphs. These will help us see how the pendulum moves and how well our control works.
