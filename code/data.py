@@ -8,26 +8,26 @@ import os
 import threading
 
 # -------------------------------
-# CONFIGURAÇÃO
+# Configuration
 # -------------------------------
 PORTA = "COM3"
 BAUD = 9600
 
-# --- CSV único por execução ---
+# --- unique CSV ---
 timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
 filename_csv = f"dados_{timestamp}.csv"
 print("A guardar dados em:", filename_csv)
 
-# --- Cria pasta para gráficos ---
+# --- creates folder for the graphs ---
 base_dir = os.path.dirname(os.path.abspath(__file__))
 folder_graficos = os.path.join(base_dir, f"graficos_{timestamp}")
 os.makedirs(folder_graficos, exist_ok=True)
 
-# --- Abre porta serial ---
+# --- Opens serial ---
 ser = serial.Serial(PORTA, BAUD, timeout=1)
 time.sleep(2)  # espera Arduino iniciar
 
-# --- Cria CSV com header ---
+# --- creates CSV with header ---
 with open(filename_csv, "w", newline='') as f:
     writer = csv.writer(f)
     writer.writerow(["tempo","rpm","freq","out"])
@@ -35,10 +35,10 @@ with open(filename_csv, "w", newline='') as f:
 start_time = time.time()
 print("A ler dados do Arduino (pressiona Enter para terminar)...")
 
-# --- Flag para parar o loop ---
+# --- Flag to stop loop ---
 stop_flag = False
 
-# --- Thread para detectar Enter ---
+# --- Thread to detect Enter ---
 def wait_for_enter():
     global stop_flag
     input("\nPressiona Enter para finalizar o programa...\n")
@@ -52,7 +52,7 @@ try:
         if not linha:
             continue
 
-        # --- Parser da linha ---
+        # --- Parser of line ---
         try:
             partes = linha.split(";")
             rpm  = float(partes[0].split(":")[1])
@@ -64,20 +64,20 @@ try:
 
         tempo = time.time() - start_time
 
-        # --- Escreve imediatamente no CSV ---
+        # --- writes immediately CSV ---
         with open(filename_csv, "a", newline='') as f:
             writer = csv.writer(f)
             writer.writerow([tempo, rpm, freq, out])
 
-        # --- Mostra no shell ---
+        # --- Shows on shell ---
         print(f"{tempo:.2f}s  RPM={rpm}  FREQ={freq}  OUT={out}")
 
 finally:
     ser.close()
-    print("Porta serial fechada.")
+    print("Serial Port closed.")
 
     # -------------------------------
-    # Lê CSV e gera gráficos
+    # reads CSV and generates graphs
     # -------------------------------
     df = pd.read_csv(filename_csv)
 
@@ -116,3 +116,4 @@ finally:
 
     plt.show()
     print("Fim do programa.")
+
