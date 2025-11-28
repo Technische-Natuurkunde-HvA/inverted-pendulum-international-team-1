@@ -96,8 +96,7 @@ void countPulse() {
 }
 ``` 
 ## 3. Results
-Present your results here. This may include tables, figures, or charts.
-Add charts and other visuals to the `visuals` folder in the GitHub repository and reference them in this document if needed.
+...
 
 
 ## 4. Reflection 
