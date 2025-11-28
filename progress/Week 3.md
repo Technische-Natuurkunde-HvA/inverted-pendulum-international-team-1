@@ -6,7 +6,7 @@ We both made separate output-responses for our motors and combined these. We mad
 ## 2. Code
 
 Arduino code to produce variable pwm values for testing
-''''
+```
 #include <Wire.h>
 #include <AS5600.h>
 AS5600  as5600;  //create sensor object
