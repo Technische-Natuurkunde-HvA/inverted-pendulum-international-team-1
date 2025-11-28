@@ -1,7 +1,7 @@
 # Week 3
 
 ## 1. Progress description
-We both made separate output-responses for our motors and combined these. We made this into one graph: 
+We both made separate output-responses for our motors and combined these. We made this into graphs: 
 
 ## 2. Code
 
