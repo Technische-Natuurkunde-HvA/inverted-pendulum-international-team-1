@@ -84,7 +84,7 @@ void readAndPrintAngle() {
       Serial.print(output);
       Serial.println();    
 }
-''''
+```
 ```
 // Motor control pins
 const int motorPin1 = 10; // IN1 
