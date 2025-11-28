@@ -14,7 +14,7 @@ Use the GitHub repository to store important project files (code, visuals includ
 # Week 3
 
 ## 1. Progress description
-
+We both made separate output-responses for our motors and combined these. We made this into one graph: 
 
 ## 2. Code
 ```c
