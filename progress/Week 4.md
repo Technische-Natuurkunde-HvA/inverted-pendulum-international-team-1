@@ -109,8 +109,8 @@ void readAndPrintAngle() {
 
 ```
 ## 3. Results
-
+On the Amsterdam side we made a video and got it to stabilize in the middle. From the Lissabon side we made it so it goes from start to the middle with this PID controller.
 
 
 ## 4. Reflection 
-Making the wheel stabilize in the middle and make it go to the start to the middle.
+For Amsterdam: Making the wheel go from start to middle. Lissabon: Make it stabilize in the middle, by changing PID Controls.
