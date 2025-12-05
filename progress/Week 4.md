@@ -11,4 +11,4 @@ We both made separate output-responses for our motors and combined these. We mad
 
 
 ## 4. Reflection 
-
+Making the wheel stabilize in the middle and make it go to the start to the middle.
