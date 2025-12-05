@@ -6,6 +6,8 @@ We both made separate output-responses for our motors and combined these. We mad
 ## 2. Code
 PID Arduino CODE
 ```
+//for more information on the PID library: http://brettbeauregard.com/blog/2011/04/improving-the-beginners-pid-introduction/
+
 #include <Wire.h>
 #include <PID_v1.h>
 #include <AS5600.h>
@@ -15,22 +17,24 @@ AS5600  as5600;  //create sensor object
 unsigned long currentMs;  //current time variable
 unsigned long lastMs;     // time of last measurement
 const unsigned int FREE_RUN_PERIOD_MS = 5; //sampling period in milliseconds
-double sig_angle_deg = 0;  // angle measurement
+double sig_angle_deg;  // angle measurement
 
 // Motor control pins
 const int motorPin1 = 10; // IN1
 const int motorPin2 = 11; // IN2
 const int enablePin = 9; // ENA (PWM pin for speed control)
 
-double setpoint = 161.74; // Desired angle (vertical position)
-double output = 0;
 
-// // PID parameters
-  double Kp = 85;
-  double Ki = 2;
-  double Kd = 0.4;
-  PID myPID(&sig_angle_deg, &output, &setpoint, Kp, Ki, Kd, DIRECT);
-  double error = 1.0                                                 ;
+double setpoint = 0 ; // Desired angle (vertical position)
+double output = 0;
+const int deadzone = 0;  // motor begint pas boven 40
+
+
+// PID parameters
+double Kp = 85; //45
+double Ki = 3; //3
+double Kd = 0.5;
+PID myPID(&sig_angle_deg, &output, &setpoint, Kp, Ki, Kd, DIRECT);
 
 void readAndPrintAngle();
 
@@ -52,6 +56,9 @@ void setup() {
   myPID.SetMode(AUTOMATIC);
   myPID.SetSampleTime(FREE_RUN_PERIOD_MS); // Set sample time in milliseconds
   myPID.SetOutputLimits(-255,255); // YOU CAN ADJUST THESE OUTPUT LIMITS IF YOU WISH
+  setpoint =((float)as5600.readAngle()*0.0879)-144.07-(23.29-21.80)+4.74-121.65-2.5-8-5.67+3.5-5.96;
+  setpoint= setpoint+(35.66+11.52)/2;
+  setpoint= 12.93;
 }
 
 void loop() {
@@ -62,9 +69,18 @@ void loop() {
     readAndPrintAngle();
 
     myPID.Compute(); // Calculate PID output
+        int pwm = output;
 
+    if (pwm > 0) {
+      output = pwm + deadzone;      // omhoog duwen
+      if (pwm > 255) output = 255;
+    } 
+    else if (pwm < 0) {
+      output = pwm - deadzone;      // omlaag duwen
+      if (output < -255) output = -255;
+    }
     // Set motor direction based on PID output
-    if (output < 0) {
+    if (output > 0) {
       digitalWrite(motorPin1, LOW);
       digitalWrite(motorPin2, HIGH);
       
@@ -73,19 +89,8 @@ void loop() {
       digitalWrite(motorPin2, LOW);
       
     }
-
-    // if(sig_angle_deg>=setpoint-error && sig_angle_deg<=setpoint+error){
-    //   //stops the wheel with 2 degree range from the setpoint
-    //   output = 0;
-    //   analogWrite(enablePin, output);
-
-    //   Serial.print("STABLE");
-    //   Serial.print(sig_angle_deg);
-    //   Serial.print(" ");
-    //   // Print PID output for debugging
-    //   Serial.println(output);
-    // }
-
+    if (output < -255) output = -255;
+    if (output > 255) output = 255;
     analogWrite(enablePin, abs(output));
 
     // Print the angle to the Serial Monitor
@@ -99,8 +104,9 @@ void loop() {
 
 void readAndPrintAngle() {
       lastMs = currentMs;
-      sig_angle_deg = (float)as5600.readAngle()*0.0879; //0.0879=360/4096;  // degrees [0..360) 
+      sig_angle_deg = ((float)as5600.readAngle()*0.0879)-144.07-(23.29-21.80)+4.74-121.65-2.5-8-5.67+3.5-5.96;
 }
+
 ```
 ## 3. Results
 
