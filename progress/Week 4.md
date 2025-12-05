@@ -1,7 +1,7 @@
 # Week 4
 
 ## 1. Progress description
-We both made separate output-responses for our motors and combined these. We made this into graphs: 
+Work on the PID Codes
 
 ## 2. Code
 PID Arduino CODE
