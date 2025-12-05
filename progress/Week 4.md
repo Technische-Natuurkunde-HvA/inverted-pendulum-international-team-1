@@ -113,4 +113,5 @@ On the Amsterdam side we made a video and got it to stabilize in the middle. Fro
 
 
 ## 4. Reflection 
-For Amsterdam: Making the wheel go from start to middle. Lissabon: Make it stabilize in the middle, by changing PID Controls.
+For Amsterdam: Making the wheel go from start to middle. Lissabon: Make it stabilize in the middle, by changing PID Controls. Also working to make the graphs and take the data for the pwm-angle with the influence of the PID algorithm.
+
