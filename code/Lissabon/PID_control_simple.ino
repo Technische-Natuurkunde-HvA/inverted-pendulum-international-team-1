@@ -1,5 +1,3 @@
-//for more information on the PID library: http://brettbeauregard.com/blog/2011/04/improving-the-beginners-pid-introduction/
-
 #include <Wire.h>
 #include <PID_v1.h>
 #include <AS5600.h>
@@ -16,15 +14,15 @@ const int motorPin1 = 10; // IN1
 const int motorPin2 = 11; // IN2
 const int enablePin = 9; // ENA (PWM pin for speed control)
 
-double setpoint = 161.74; // Desired angle (vertical position)
-double output = 0;
+double setpoint = 235.66; // Desired angle (vertical position)
+double out = 0;
 
 // // PID parameters
-  double Kp = 85;
-  double Ki = 2;
-  double Kd = 0.4;
-  PID myPID(&sig_angle_deg, &output, &setpoint, Kp, Ki, Kd, DIRECT);
-  double error = 1.0                                                 ;
+  double Kp = 70;
+  double Ki = 50;
+  double Kd = 0.6;
+  PID myPID(&sig_angle_deg, &out, &setpoint, Kp, Ki, Kd, DIRECT);
+  double error = 5.0;                                                 ;
 
 void readAndPrintAngle();
 
@@ -58,7 +56,7 @@ void loop() {
     myPID.Compute(); // Calculate PID output
 
     // Set motor direction based on PID output
-    if (output < 0) {
+    if (out < 0) {
       digitalWrite(motorPin1, LOW);
       digitalWrite(motorPin2, HIGH);
       
@@ -69,24 +67,25 @@ void loop() {
     }
 
     // if(sig_angle_deg>=setpoint-error && sig_angle_deg<=setpoint+error){
-    //   //stops the wheel with 2 degree range from the setpoint
-    //   output = 0;
-    //   analogWrite(enablePin, output);
-
-    //   Serial.print("STABLE");
-    //   Serial.print(sig_angle_deg);
-    //   Serial.print(" ");
-    //   // Print PID output for debugging
-    //   Serial.println(output);
+    //   //stops the wheel with error degree range from the setpoint
+    //   if (currentMs - lastMs >= 200) { 
+    //   deathzone();
+    //   analogWrite(enablePin, 0.0);
+    //   logger();
+    //   Serial.print("STABLE zone");
+    //   }
+    //   else
+    //   {
+    //   deathzone();
+    //   analogWrite(enablePin, abs(out));
+    //   logger();
+    //   }
     // }
 
-    analogWrite(enablePin, abs(output));
-
-    // Print the angle to the Serial Monitor
-    Serial.print(sig_angle_deg);
-    Serial.print(" ");
-    // Print PID output for debugging
-    Serial.println(output);
+      deathzone();
+      analogWrite(enablePin, abs(out));
+      logger();
+    
  
   }
 }
@@ -94,4 +93,23 @@ void loop() {
 void readAndPrintAngle() {
       lastMs = currentMs;
       sig_angle_deg = (float)as5600.readAngle()*0.0879; //0.0879=360/4096;  // degrees [0..360) 
+}
+
+void deathzone(){
+  if (out > -50 && out < 50) {
+    if (out >= 0){ 
+    out = 50;}
+    else{
+    out = -50;}
+  }
+}
+
+void logger(){
+  
+      Serial.print("out:");
+      Serial.print(out);
+      Serial.print(";");
+      Serial.print("sig_angle_deg:");
+      Serial.println(sig_angle_deg);
+
 }
