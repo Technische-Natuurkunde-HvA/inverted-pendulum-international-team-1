@@ -1,0 +1,6 @@
+- The weekly progress report is clear, but too short. In particular, include visuals in your report, or at least clear references to them.
+- Try to merge the two PID sketches (keeping only the setpoint, and probably the PID parameters values, different). While you do this, please also clean up the code.
+- Move the motor_encoder_simple.ino and the motor_encoder_simple_HvA.ino files to the correct folder, or delete them if they are not needed. In general, you should reorganize your repository by removing unnecessary files. In particular, merge the subfolders for Amsterdam and Lisbon, the repository should reflect your combined work.
+- It seems that last week’s feedback was mostly neglected. We recommend that you read those comments again. Please remember that these remarks are intended to help you prepare your final written product, which will count towards your grade.
+- When tuning the parameters make sure you have a systematic approach. Decide on which parameters to change, observe the results, and based on the results, decide which parameter to change next and by how much.
+- Make sure that you report on the process and intermediate results. Explain how you made decisions and why, instead of just mentioning the final numbers.
