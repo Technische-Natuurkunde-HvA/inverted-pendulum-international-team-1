@@ -73,10 +73,45 @@ Sensor readings and motor outputs:
 - The threshold-based code sets motor direction and speed based on the angle using simple logic.
 - All codes log the key values to the serial monitor (RPM, out, sig_angle_deg).
 
+### 4.2 Python Tools
+
+Reading measurement files:
+
+The Python scripts read data from the Arduino in real time via the serial port and save it to CSV files.
+The first script logs rpm, freq, and out values at each sampling step, while the second script logs out and sig_angle_deg.
+Each row in the CSV represents one measurement with a timestamp or sequential index.
+
+Generating plots:
+
+The scripts automatically generate plots using matplotlib from the CSV data.
+Examples: RPM vs OUT, Frequency vs OUT, RPM vs Time for the first script; OUT vs Angle for the second.
+All plots are saved in timestamped folders (graphs_timestamp or visuals_timestamp) for easy organization.
+
 ---
 
 ## 5. Experiments and Data
 
+Measurement files
+
+- [Step response datas] (.../
+                     data_(0,-255).csv
+                     data_(0,255).csv
+
+– contains the motor output (out) and measured angle (sig_angle_deg) during a step input to the system.
+
+Stabilization log: codedata_20251209_155822.csv
+
+– records the pendulum angle and motor output while the system is actively balancing.
+
+Plots
+
+Angle over time:
+
+
+This plot shows how the pendulum angle changes and stabilizes over time under PID control.
+
+
+Videos
 link
 
 ---
