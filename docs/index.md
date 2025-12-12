@@ -93,23 +93,14 @@ All plots are saved in timestamped folders (graphs_timestamp or visuals_timestam
 
 Measurement files
 
-- [Step response datas] (.../
-                     data_(0,-255).csv
-                     data_(0,255).csv
-
-– contains the motor output (out) and measured angle (sig_angle_deg) during a step input to the system.
-
-Stabilization log: codedata_20251209_155822.csv
-
-– records the pendulum angle and motor output while the system is actively balancing.
-
-Plots
-
-Angle over time:
+- [Step response data] (code/Lissabon/csv/data_(-255,255).csv)
+- [Step response data] (code/Lissabon/csv/data_(0,-255).csv)
+- [Step response data] (code/Lissabon/csv/data_(0,255).csv)
+Include images created from those datas:
 
 
-This plot shows how the pendulum angle changes and stabilizes over time under PID control.
-
+- [Angle over time] (code/Lissabon/csv/codedata_20251209_155822.csv)
+Records the pendulum angle and motor output while the system is actively balancing.
 
 Videos
 link
