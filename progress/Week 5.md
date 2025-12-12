@@ -12,3 +12,4 @@ This week, on the Lisbon side, we solved the issue related to stabilizing the wh
 On the Amsterdam side, the wheel is now capable of starting from an upside-down position and rapidly reaching the top setpoint, which can also be seen in the video uploaded this week.
 
 ## 4. Reflection 
+On the Lisbon side, the main issue we are currently facing is the lack of reliability of the AS5600 sensor, as it occasionally outputs angle measurements with significant errors.
