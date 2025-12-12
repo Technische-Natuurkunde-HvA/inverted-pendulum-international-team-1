@@ -55,10 +55,23 @@ Kp,Kd,Ki are the proportional, derivative, and integral gains.
 
 ## 4. Implementation
 ### 4.1 Arduino Control Software
-Explain:
-- Main control loop frequency (e.g., 100 Hz)
-- Which `.ino` file is the main entry point
-- How sensor readings and motor outputs are handled
+
+Main control loop frequency:
+
+- The PID code samples the sensor and computes the motor output every 5 ms (~200 Hz).
+- The threshold-based control code reads the sensor every 100 ms.
+- The pulse-counter code calculates frequency and RPM every 200 ms.
+
+setup() initializes the sensor, motor outputs, and serial communication.
+loop() runs continuously, executing the control logic.
+
+Sensor readings and motor outputs:
+
+- The AS5600 magnetic sensor provides the pendulum angle in degrees.
+- The pulse-counter code measures motor RPM from encoder pulses.
+- The PID code calculates motor PWM output from angle and angular velocity feedback.
+- The threshold-based code sets motor direction and speed based on the angle using simple logic.
+- All codes log the key values to the serial monitor (RPM, out, sig_angle_deg).
 
 ---
 
