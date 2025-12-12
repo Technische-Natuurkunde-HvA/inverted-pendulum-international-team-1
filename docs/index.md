@@ -93,13 +93,13 @@ All plots are saved in timestamped folders (graphs_timestamp or visuals_timestam
 
 Measurement files
 
-- [Step response data](code/Lissabon/csv/data_(-255,255).csv)
-- [Step response data](code/Lissabon/csv/data_(0,-255).csv)
-- [Step response data](code/Lissabon/csv/data_(0,255).csv)
+- [Step response data](inverted-pendulum-international-team-1/code/Lissabon/csv/data_(-255,255).csv)
+- [Step response data](inverted-pendulum-international-team-1/code/Lissabon/csv/data_(0,-255).csv)
+- [Step response data](inverted-pendulum-international-team-1/code/Lissabon/csv/data_(0,255).csv)
 Include images created from those datas:
 
 
-- [Angle over time](code/Lissabon/csv/codedata_20251209_155822.csv)
+- [Angle over time](inverted-pendulum-international-team-1/code/Lissabon/csv/codedata_20251209_155822.csv)
 Records the pendulum angle and motor output while the system is actively balancing.
 
 Videos
@@ -115,11 +115,11 @@ Summarize
 
 ## 7. Project Timeline
 
-- [Week 1 report](../progress/weekly-progress.md)
-- [Week 2 report](../progress/Week_2.md)
-- [Week 3 report](../progress/Week_3.md)
-- [Week 4 report](../progress/Week_4.md)
-- [Week 5 report](../progress/Week_5.md)
+- [Week 1 report](inverted-pendulum-international-team-1/progress/weekly-progress.md)
+- [Week 2 report](inverted-pendulum-international-team-1/progress/Week_2.md)
+- [Week 3 report](inverted-pendulum-international-team-1/progress/Week_3.md)
+- [Week 4 report](inverted-pendulum-international-team-1/progress/Week_4.md)
+- [Week 5 report](inverted-pendulum-international-team-1/progress/Week_5.md)
 
 ---
 
