@@ -5,7 +5,7 @@
 
 ## 2. Code
 Lisbon Code for PID control
-'''
+```
 #include <Wire.h>
 #include <PID_v1.h>
 #include <AS5600.h>
@@ -121,7 +121,7 @@ void logger(){
       Serial.println(sig_angle_deg);
 
 }
-'''
+```
 ## 3. Results
 This week, on the Lisbon side, we solved the issue related to stabilizing the wheel in the center and maintaining its position. The wheel is now able to move from rest to the setpoint very quickly and remain stable for long periods of time, as shown in the timelapse video.
 
