@@ -115,11 +115,11 @@ Summarize
 
 ## 7. Project Timeline
 
-- [Week 1 report](inverted-pendulum-international-team-1/progress/weekly-progress.md)
-- [Week 2 report](https://raw.githubusercontent.com/Technische-Natuurkunde-HvA/inverted-pendulum-international-team-1/refs/heads/main/progress/Week%202.md?token=GHSAT0AAAAAADPVWYP4SDTQCSBTEKXD5TDI2J4J7IQ)
+- [Week 1 report](https://github.com/Technische-Natuurkunde-HvA/inverted-pendulum-international-team-1/blob/main/progress/Week%201.md)
+- [Week 2 report](https://github.com/Technische-Natuurkunde-HvA/inverted-pendulum-international-team-1/blob/main/progress/Week%202.md)
 - [Week 3 report](https://github.com/Technische-Natuurkunde-HvA/inverted-pendulum-international-team-1/blob/main/progress/Week%203.md)
-- [Week 4 report](inverted-pendulum-international-team-1/progress/Week_4.md)
-- [Week 5 report](inverted-pendulum-international-team-1/progress/Week_5.md)
+- [Week 4 report](https://github.com/Technische-Natuurkunde-HvA/inverted-pendulum-international-team-1/blob/main/progress/Week%204.md)
+- [Week 5 report](https://github.com/Technische-Natuurkunde-HvA/inverted-pendulum-international-team-1/blob/main/progress/Week%205.md)
 
 ---
 
