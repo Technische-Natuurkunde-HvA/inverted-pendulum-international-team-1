@@ -59,7 +59,7 @@ Kp,Kd,Ki are the proportional, derivative, and integral gains.
 Main control loop frequency:
 
 - The PID code samples the sensor and computes the motor output every 5 ms (~200 Hz).
-- The threshold-based control code reads the sensor every 100 ms.
+- The control code reads the sensor every 100 ms.
 - The pulse-counter code calculates frequency and RPM every 200 ms.
 
 setup() initializes the sensor, motor outputs, and serial communication.
@@ -121,4 +121,27 @@ aaa
 
 ## 8. Team and Credits
 
-aa
+Our project team is composed of two groups: the Portuguese team and the Amsterdam team.
+
+Portuguese Team:
+Artur Matos – Physics Engineering student, ISEL
+Tiago Bernardo – Physics Engineering student, ISEL
+Hollo Milan – Erasmus student, Mechanical Engineering, BME
+
+Amsterdam Team:
+Casper van Schaardenburg – Student, Amsterdam University of Applied Sciences
+Silvan van der Leij – Student, Amsterdam University of Applied Sciences
+Ashley Marsman – Student, Amsterdam University of Applied Sciences
+
+Supervisors
+
+
+Collaborating Institutions
+ISEL - Instituto Superior de Engenharia de Lisboa
+Amsterdam University of Applied Sciences
+
+---
+
+## 9. Repository
+Project repository:
+
