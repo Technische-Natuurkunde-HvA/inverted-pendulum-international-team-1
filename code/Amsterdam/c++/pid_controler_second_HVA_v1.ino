@@ -8,36 +8,41 @@ unsigned long currentMs;  //current time variable
 unsigned long lastMs;     // time of last measurement
 const unsigned int FREE_RUN_PERIOD_MS = 5; //sampling period in milliseconds
 double sig_angle_deg;  // angle measurement
-double tot_hoek = (314.15-263.26);
+double tot_hoek = (311.61 -260.80 );
 // Motor control pins
 const int motorPin1 = 10; // IN1
 const int motorPin2 = 11; // IN2
 const int enablePin = 9; // ENA (PWM pin for speed control)
 
 
-double setpoint = 0 ; // Desired angle (vertical position)
-double output = 0;
-const int deadzone = 10;  // motor begint pas boven 40
 
-// --- Nieuwe variabelen voor tweede PID (snelheid) ---
-double speedSetpoint = 0;    // setpoint afkomstig van hoek-PID (deg/s)
+double output = 0;
+double output_pid=0;
+int pwm =0;
+const int deadzone = 40;  // motor begint pas boven 40
+
+
+double setpoint_pendulum = 0 ; // Desired angle (vertical position)
+
+double Setpoint_flyweel = 0;    // setpoint afkomstig van hoek-PID (deg/s)
 double measuredSpeed = 0;    // gemeten snelheid (deg/s), afgeleid uit hoekverandering
 double prevAngle = 0;
+double dAngle=0;
 unsigned long prevTimeMs = 0;
-
+unsigned long dtMs =0;
 // PID parameters (hoek)
 double Kp = 40; //40
 double Ki = 8; //8
 double Kd = 0.03;//0.01
 // PID object: buitenlus (hoek) geeft nu speedSetpoint als output
-PID myPID(&sig_angle_deg, &speedSetpoint, &setpoint, Kp, Ki, Kd, DIRECT);
+PID pendulumPID(&sig_angle_deg, &Setpoint_flyweel, &setpoint_pendulum, Kp, Ki, Kd, DIRECT);
 
 // PID parameters (snelheid) - tweede PID
 double Kp2 = 1;
-double Ki2 = 0.5;
+double Ki2 = 0.9;
 double Kd2 = 0.001;
 // PID object: binnenlus (snelheid) geeft PWM-output
-PID speedPID(&measuredSpeed, &output, &speedSetpoint, Kp2, Ki2, Kd2, DIRECT);
+PID flyweelPID(&measuredSpeed, &output_pid, &Setpoint_flyweel, Kp2, Ki2, Kd2, DIRECT);
 
 void readAndPrintAngle();
 
@@ -57,20 +62,13 @@ void setup() {
   Serial.println();
 
   // Initialize PID controllers
-  myPID.SetMode(AUTOMATIC);
-  myPID.SetSampleTime(FREE_RUN_PERIOD_MS); // Set sample time in milliseconds
-  // hoek-PID output is snelheid (deg/s) -> beperk naar redelijke snelheid
-  myPID.SetOutputLimits(-200, 200);
-
-  speedPID.SetMode(AUTOMATIC);
-  speedPID.SetSampleTime(FREE_RUN_PERIOD_MS);
-  // snelheid-PID output is PWM
-  speedPID.SetOutputLimits(-255, 255);
-
-
-  setpoint=((float)as5600.readAngle()*0.0879)-(tot_hoek/2);
-
-  // init prevAngle
+  pendulumPID.SetMode(AUTOMATIC);
+  pendulumPID.SetSampleTime(FREE_RUN_PERIOD_MS); // Set sample time in milliseconds
+  pendulumPID.SetOutputLimits(-255+deadzone, 255-deadzone);
+  flyweelPID.SetMode(AUTOMATIC);
+  flyweelPID.SetSampleTime(FREE_RUN_PERIOD_MS);
+  flyweelPID.SetOutputLimits(-255+deadzone, 255-deadzone);
+  setpoint_pendulum=(0);
   prevAngle = ((float)as5600.readAngle()*0.0879);
 }
 
@@ -78,14 +76,10 @@ void loop() {
   // Read and print the angle from AS5600 at the sampling frequency
   currentMs = millis();
   if (currentMs - lastMs >= FREE_RUN_PERIOD_MS) {// periodic sampling
-
     readAndPrintAngle(); // update sig_angle_deg and lastMs
-
-    // Bereken gemeten snelheid (deg/s) op basis van hoekverandering en tijd
-    unsigned long dtMs = currentMs - prevTimeMs;
+    dtMs = currentMs - prevTimeMs;
     if (dtMs == 0) dtMs = 1;
-    double dAngle = sig_angle_deg - prevAngle;
-    // eenvoudige unwrap indien nodig (optioneel, afhankelijk van sensor)
+    dAngle = sig_angle_deg - prevAngle;
     if (dAngle > 180) dAngle -= 360;
     else if (dAngle < -180) dAngle += 360;
     measuredSpeed = (dAngle) * (1000.0 / dtMs); // deg/s
@@ -93,13 +87,13 @@ void loop() {
     prevAngle = sig_angle_deg;
     prevTimeMs = currentMs;
 
-    // Buitenlus: hoek PID berekent gewenste snelheid (speedSetpoint)
-    myPID.Compute();
 
-    // Binnenlus: snelheid PID berekent PWM-output
-    speedPID.Compute();
+    pendulumPID.Compute();
 
-    int pwm = (int)output;
+
+    flyweelPID.Compute();
+
+     pwm = (int)output_pid;
 
     if (pwm > 0) {
       output = pwm + deadzone;      // omhoog duwen
@@ -127,7 +121,7 @@ void loop() {
     Serial.print(sig_angle_deg);
     Serial.print(" ");
     Serial.print("spdSP:");
-    Serial.print(speedSetpoint);
+    Serial.print(Setpoint_flyweel);
     Serial.print(" spdMeas:");
     Serial.print(measuredSpeed);
     Serial.print(" pwm:");
@@ -138,5 +132,5 @@ void loop() {
 
 void readAndPrintAngle() {
       lastMs = currentMs;
-      sig_angle_deg = ((float)as5600.readAngle()*0.0879);
+      sig_angle_deg = ((float)as5600.readAngle()*0.0879)-100-190;
 }
