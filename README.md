@@ -8,10 +8,8 @@ Our github is split in 5 sections. The first section is [code](https://github.co
 
 ---
 
-## 2. How to run the code
-
-
-## 3. Control Principle
+## 2. Arduino & Python
+First you need to install the arduino app. Which you can find [here](https://www.arduino.cc/en/software/). After downloading the software, you can upload the desired c++ code from [code](https://github.com/Technische-Natuurkunde-HvA/inverted-pendulum-international-team-1/tree/main/code) onto the software. Afterwards you need to install a plugin called 'PID' from the left side of your screen inside the app under 'BOARD MANAGER'. Once that is ready ...
 
 ## 3. Visuals and data
 As descibed in the first part, you can find all the visuals under the folder [visuals](https://github.com/Technische-Natuurkunde-HvA/inverted-pendulum-international-team-1/tree/main/visuals). Under the tab [code](https://github.com/Technische-Natuurkunde-HvA/inverted-pendulum-international-team-1/tree/main/code) you can find .csv files which is data collected by measurements.
