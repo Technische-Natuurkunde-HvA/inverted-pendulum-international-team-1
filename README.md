@@ -18,11 +18,11 @@ As descibed in the first part, you can find all the visuals under the folder [vi
 ```text
 inverted-pendulum-international-team-1
 ├─ code/ # Arduino and Python code AND Measurement files (csv, dat, txt)
+├─ docs/
+│ └─ index.md # Public project documentation (for GitHub Pages)
 ├─ feedback/ # Internal team/supervisor comments
 ├─ progress/ # Weekly markdown reports (raw material)
 ├─ visuals/ # Photos, plots, diagrams, videos
-├─ docs/
-│ └─ index.md # Public project documentation (for GitHub Pages)
 └─ README.md # Technical repo overview for GitHub users
 ```
 
