@@ -14,7 +14,7 @@ First you need to install the arduino app. Which you can find [here](https://www
 ## 3. Visuals and data
 As descibed in the first part, you can find all the visuals under the folder [visuals](https://github.com/Technische-Natuurkunde-HvA/inverted-pendulum-international-team-1/tree/main/visuals). Under the tab [code](https://github.com/Technische-Natuurkunde-HvA/inverted-pendulum-international-team-1/tree/main/code) you can find .csv files which is data collected by measurements.
 
-## 9. Directory tree
+## 4. Directory tree
 ```text
 inverted-pendulum-international-team-1
 ├─ code/ # Arduino and Python code AND Measurement files (csv, dat, txt)
@@ -25,3 +25,8 @@ inverted-pendulum-international-team-1
 │ └─ index.md # Public project documentation (for GitHub Pages)
 └─ README.md # Technical repo overview for GitHub users
 ```
+
+---
+
+## 9. Repository
+Project repository: https://technische-natuurkunde-hva.github.io/inverted-pendulum-international-team-1/
