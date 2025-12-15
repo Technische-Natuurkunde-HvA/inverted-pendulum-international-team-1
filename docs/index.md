@@ -42,18 +42,10 @@ The presented code implements the principles of a **discrete-time, closed-loop P
 
 ### 3.1. The Control Basis (Error Calculation)
 
-The foundation of the control loop is the continuous determination of the **Error ($e(t)$)**, which is the difference between the desired target (Setpoint, $SP$) and the measured real state (AS5600 angle, $\theta(t)$):
+The foundation of the control loop is the continuous determination of the **error**, which is the difference between the desired target (Setpoint) and the measured real state (AS5600 angle).
 
-$$
-e(t) = SP - \theta(t)
-$$
-
-* **$SP$ (Setpoint):** The desired angular position (e.g., $0^{\circ}$ or $235.66^{\circ}$).
-* **$\theta(t)$ (Measured Angle):** The actual angle read from the AS5600, calculated using:
-    $$
-    \theta(t) = \text{AS5600\_Value} \times \frac{360}{4096}
-    $$
-    (Where $\frac{360}{4096} \approx 0.0879^{\circ}/\text{LSB}$).
+* **SP (Setpoint):** The desired angular position.
+* **theta(t) (Measured Angle):** The actual angle read from the AS5600
 
 ### 3.2 The PID Control Law
 
@@ -70,7 +62,7 @@ $$
 * 
 ### 3.3. Output Limitation (Motor Drive)
 
-The calculated $u(t)$ signal must be limited by the physical constraints of the motor driver, which is the maximum PWM value ($\pm 255$):
+The calculated output signal must be limited by the physical constraints of the motor driver, which is the maximum PWM value ($\pm 255$):
 
 Example a PID controller:
 ![PID](https://github.com/Technische-Natuurkunde-HvA/inverted-pendulum-international-team-1/blob/main/visuals/figures/PID.png)
