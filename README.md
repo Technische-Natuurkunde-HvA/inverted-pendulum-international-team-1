@@ -28,5 +28,5 @@ inverted-pendulum-international-team-1
 
 ---
 
-## 9. Repository
+## 5. Repository
 Project repository: https://technische-natuurkunde-hva.github.io/inverted-pendulum-international-team-1/
