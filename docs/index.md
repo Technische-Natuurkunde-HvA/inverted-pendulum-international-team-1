@@ -15,20 +15,20 @@ Inverted pendulums are interesting because they are naturally unstable without c
 
 The experimental setup is a flywheel-driven inverted pendulum consisting of mechanical and electronic components.
 
-**Mechanical Setup**
+**Mechanical Setup:**
 Pendulum arm: 3D-printed arm that freely rotates around its pivot axis.
 Angle sensor: a rotary encoder to measure the arm’s tilt.
 Reaction wheel: a 3D-printed flywheel attached to the end of the arm, which is accelerated or decelerated by the motor to stabilize the pendulum.
 
-**Drive**
+**Drive:**
 DC motor: JGA25-370, 12 V DC motor with an integrated encoder.
 The encoder signals are calculate the wheel’s rotational speed (RPM). The gear reduction ratio of the motor should be considered in the measurements.
 
-**Electronic Setup**
+**Electronic Setup:**
 Microcontroller: Arduino UNO
 Motor driver: L298N motor driver, which controls the JGA25-370 motor via PWM.
 
-**Power supply**
+**Power supply:**
 The motor is powered by an external 12 V DC supply
 The Arduino receives power through USB from the computer
 
@@ -65,12 +65,8 @@ $$
 The calculated output signal must be limited by the physical constraints of the motor driver, which is the maximum PWM value ($\pm 255$):
 
 Example a PID controller:  
-<center>
   
 ![PID](https://github.com/Technische-Natuurkunde-HvA/inverted-pendulum-international-team-1/blob/main/visuals/figures/PID.png)
-
-</center>
-
 
 ---
 
@@ -146,7 +142,7 @@ Curves created from those datas:(0;255)
 Records the pendulum angle and motor output while the system is actively balancing.
 
 Time-lapse: Pendulum Stability:
-- [Watch the pendulum balancing](https://youtube.com/shorts/owcCYEMpBoo?si=FQ8dx7qpwToPkynY)
+- [Watch the pendulum stability](https://youtube.com/shorts/owcCYEMpBoo?si=FQ8dx7qpwToPkynY)
 
 Pendulum returning to equilibrium after disturbances:
 - [Watch the pendulum balancing](https://github.com/Technische-Natuurkunde-HvA/inverted-pendulum-international-team-1/blob/main/visuals/videos/Amsterdam/Video%20van%20WhatsApp%20op%202025-12-05%20om%2016.32.28_f4a7a739.mp4)
