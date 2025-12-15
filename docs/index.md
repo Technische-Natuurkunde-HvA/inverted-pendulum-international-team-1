@@ -66,15 +66,18 @@ The calculated output signal must be limited by the physical constraints of the 
 
 Example a PID controller:  
 <center>
+  
 ![PID](https://github.com/Technische-Natuurkunde-HvA/inverted-pendulum-international-team-1/blob/main/visuals/figures/PID.png)
+
 </center>
+
 
 ---
 
 ## 4. Implementation
 ### 4.1 Arduino Control Software
 
-Main control loop frequency:
+**Main control loop frequency**
 
 - The PID code samples the sensor and computes the motor output every 5 ms (~200 Hz).
 - The control code reads the sensor every 100 ms.
@@ -83,7 +86,7 @@ Main control loop frequency:
 The setup() initializes the sensor, motor outputs, and serial communication.
 The loop() runs continuously, executing the control logic.
 
-Sensor readings and motor outputs:
+**Sensor readings and motor outputs**
 
 - The AS5600 magnetic sensor provides the pendulum angle in degrees.
 - The pulse-counter code measures motor RPM from encoder pulses.
@@ -93,13 +96,13 @@ Sensor readings and motor outputs:
 
 ### 4.2 Python Tools
 
-Reading measurement files:
+**Reading measurement files**
 
 The Python scripts read data from the Arduino in real time via the serial port and save it to CSV files.
 The first script logs rpm, freq, and out values at each sampling step, while the second script logs out and sig_angle_deg.
 Each row in the CSV represents one measurement with a timestamp or sequential index.
 
-Generating plots:
+**Generating plots**
 
 The scripts automatically generate plots using matplotlib from the CSV data.
 Examples: RPM vs OUT, Frequency vs OUT, RPM vs Time for the first script; OUT vs Angle for the second.
@@ -115,47 +118,43 @@ Measurement files (csv) are located in:
 - [Step response data(0;255)](https://github.com/Technische-Natuurkunde-HvA/inverted-pendulum-international-team-1/blob/main/code/Lissabon/csv/data_(0%2C255).csv)
 - [Angle data](https://github.com/Technische-Natuurkunde-HvA/inverted-pendulum-international-team-1/blob/main/code/Lissabon/csv/codedata_20251209_155822.csv)
   
-Include images created from those datas:(-255;255)
+Curves created from those datas:(-255;255)
 
-<center>
   
 ![freq vs out](https://github.com/Technische-Natuurkunde-HvA/inverted-pendulum-international-team-1/blob/main/visuals/figures/GraphsRPM_PWM/graficos_(-255%2C255)/freq_vs_out.png)
 ![rpm vs out](https://github.com/Technische-Natuurkunde-HvA/inverted-pendulum-international-team-1/blob/main/visuals/figures/GraphsRPM_PWM/graficos_(-255%2C255)/rpm_vs_out.png)
 ![rpm vs tempo](https://github.com/Technische-Natuurkunde-HvA/inverted-pendulum-international-team-1/blob/main/visuals/figures/GraphsRPM_PWM/graficos_(-255%2C255)/rpm_vs_tempo.png)
 
-</center>
 
-Include images created from those datas:(0;-255)
+Curves created from those datas:(0;-255)
 
-<center>
   
 ![freq vs out](https://github.com/Technische-Natuurkunde-HvA/inverted-pendulum-international-team-1/blob/main/visuals/figures/GraphsRPM_PWM/graficos_(0%2C-255)/freq_vs_out.png)
 ![rpm vs out](https://github.com/Technische-Natuurkunde-HvA/inverted-pendulum-international-team-1/blob/main/visuals/figures/GraphsRPM_PWM/graficos_(0%2C-255)/rpm_vs_out.png)
 ![rpm vs tempo](https://github.com/Technische-Natuurkunde-HvA/inverted-pendulum-international-team-1/blob/main/visuals/figures/GraphsRPM_PWM/graficos_(0%2C-255)/rpm_vs_tempo.png)
 
-</center>
   
-Include images created from those datas:(0;255)
+Curves created from those datas:(0;255)
 
-<center>
   
 ![freq vs out](https://github.com/Technische-Natuurkunde-HvA/inverted-pendulum-international-team-1/blob/main/visuals/figures/GraphsRPM_PWM/graficos_(0%2C255)/freq_vs_out.png)
 ![rpm vs out](https://github.com/Technische-Natuurkunde-HvA/inverted-pendulum-international-team-1/blob/main/visuals/figures/GraphsRPM_PWM/graficos_(0%2C255)/rpm_vs_out.png)
 ![rpm vs tempo](https://github.com/Technische-Natuurkunde-HvA/inverted-pendulum-international-team-1/blob/main/visuals/figures/GraphsRPM_PWM/graficos_(0%2C255)/rpm_vs_tempo.png)
 
 ![out vs angle](https://github.com/Technische-Natuurkunde-HvA/inverted-pendulum-international-team-1/blob/main/visuals/figures/out_vs_sig_angle_deg.png)
-</center>
 
 Records the pendulum angle and motor output while the system is actively balancing.
 
-Videos:
+Video about the pendulum balancing
 - [Watch the pendulum balancing](https://github.com/Technische-Natuurkunde-HvA/inverted-pendulum-international-team-1/blob/main/visuals/videos/Amsterdam/Video%20van%20WhatsApp%20op%202025-12-05%20om%2016.32.28_f4a7a739.mp4)
 
 ---
 
 ## 6. Results
 
-Summarize
+**Summary of achievements**
+
+The pendulum has shown significant improvement on both sites. In Lisbon, the wheel is now able to move very quickly from the bumper to the setpoint and remain stable for long periods, solving the issue related to stabilizing it in the center. In Amsterdam, the wheel can start from a low position (-180º relative to the equilibrium position), reach the equilibrium position, and maintain stability, making the system almost fully functional. The main remaining challenge on the Lisbon side is the unreliability of the AS5600 sensor, which occasionally outputs significant errors in angle measurements. Overall, wheel stabilization and setpoint achievement have been successfully accomplished on both sites.
 
 ---
 
