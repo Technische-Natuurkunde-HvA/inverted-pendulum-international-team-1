@@ -45,7 +45,7 @@ The presented code implements the principles of a **discrete-time, closed-loop P
 The foundation of the control loop is the continuous determination of the **error**, which is the difference between the desired target (Setpoint) and the measured real state (AS5600 angle).
 
 * **SP (Setpoint):** The desired angular position.
-* **theta(t) (Measured Angle):** The actual angle read from the AS5600
+* **sig_angle_deg (Measured Angle):** The actual angle read from the AS5600
 
 ### 3.2 The PID Control Law
 
@@ -59,12 +59,13 @@ $$
 * **P-term:** Proportional to the current error. This ensures a fast initial reaction.
 * **I-term:** Proportional to the sum (integral) of past errors. This component is responsible for eliminating the steady-state error (offset). 
 * **D-term:** Proportional to the rate of change of the error (derivative). This dampens overshoot (oscillation) and stabilizes the system.
-* 
+
 ### 3.3. Output Limitation (Motor Drive)
 
 The calculated output signal must be limited by the physical constraints of the motor driver, which is the maximum PWM value ($\pm 255$):
 
 Example a PID controller:
+
 ![PID](https://github.com/Technische-Natuurkunde-HvA/inverted-pendulum-international-team-1/blob/main/visuals/figures/PID.png)
 
 ---
@@ -154,16 +155,21 @@ Summarize
 
 ## 7. Project Timeline
 
-- [Week 1 report](https://github.com/Technische-Natuurkunde-HvA/inverted-pendulum-international-team-1/blob/main/progress/Week%201.md)
-descp.
+**Week 2** We successfully executed the motor control testing cycle, incrementally increasing the PWM value from 0 to 255 while recording five measurements at each 1-second interval. While the primary data collection is complete, the critical next step is to implement the necessary Python code to automatically save these measured values for proper analysis. Furthermore, a key finding from our reflection is that the wheels were printed with different fill percentages; this physical variation in mass and friction necessitates a careful comparison of our results to account for these inconsistencies.
+
 - [Week 2 report](https://github.com/Technische-Natuurkunde-HvA/inverted-pendulum-international-team-1/blob/main/progress/Week%202.md)
-descp.
+
+**Week 3** We implemented the Python code for the automatic processing of measured data and the creation of graphs. As a result, we created three main graphs (PWM-RPM, PWM-FREQ, RPM-Time) and their corresponding CSV files, documenting three different test conditions: PWM increase from 0 to 255, direction change from −255 to 255, and decrease from 0 to −255. As a reflection, for the next week, we will 3D-print a wheel with a larger diameter (200mm) with a completely flat backside to increase stability and eliminate wobbling. Furthermore, planning has begun for the angle-vs-time graphs to visually verify the control system's performance.
+
 - [Week 3 report](https://github.com/Technische-Natuurkunde-HvA/inverted-pendulum-international-team-1/blob/main/progress/Week%203.md)
-descp.
+
+**Week 4** The main focus this week was on fine-tuning the PID controller codes. Regarding results: the Amsterdam team successfully achieved stabilization of the wheel in the middle (upright) position, which was captured on video. On the Lisbon side, the wheel already stabilizes with ease when starting from the bottom, but maintaining the middle position still requires work. As a reflection and next step, the Amsterdam team will focus on making the wheel transition from the bottom to the middle, while the Lisbon team will attempt to achieve stable central positioning by modifying the PID controls. Furthermore, work will begin on creating the graphs and collecting the data for PWM-vs-angle under the influence of the PID algorithm.
+
 - [Week 4 report](https://github.com/Technische-Natuurkunde-HvA/inverted-pendulum-international-team-1/blob/main/progress/Week%204.md)
-descp.
+
+**Week 5** This week, as a result, the Lisbon team successfully solved the issue of stabilizing and maintaining the wheel in the center. The wheel is now able to rapidly move from rest to the setpoint and remain stable for long periods, as documented in the uploaded timelapse video. On the Amsterdam side, the wheel is now capable of starting from the upside-down position and quickly reaching the top setpoint. As a reflection, the main ongoing challenge for the Lisbon side is the lack of reliability of the AS5600 sensor, which occasionally outputs angle measurements with significant errors.
+
 - [Week 5 report](https://github.com/Technische-Natuurkunde-HvA/inverted-pendulum-international-team-1/blob/main/progress/Week%205.md)
-descp.
 
 ---
 
