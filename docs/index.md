@@ -7,7 +7,7 @@ As part of the COIL project, we are working together as an international team. T
 
 ## 1. Project Motivation
 
-Inverted pendulums are interesting because they are naturally unstable—without constant adjustment, they fall over. Balancing an inverted pendulum requires continuous control, which is why it’s a classic problem in control theory and engineering. By studying and stabilizing inverted pendulums, we can learn how to design systems that maintain balance and stability, which has applications in robotics, transportation, and many automated systems.
+Inverted pendulums are interesting because they are naturally unstable without constant adjustment, they fall over. Balancing an inverted pendulum requires continuous control, which is why it’s a classic problem in control theory and engineering. By studying and stabilizing inverted pendulums, we can learn how to design systems that maintain balance and stability, which has applications in robotics, transportation, and many automated systems.
 
 ---
 
@@ -18,13 +18,11 @@ The experimental setup is a flywheel-driven inverted pendulum consisting of mech
 Mechanical Setup
 Pendulum arm: 3D-printed arm that freely rotates around its pivot axis.
 Angle sensor: a rotary encoder to measure the arm’s tilt.
-
 Reaction wheel: a 3D-printed flywheel attached to the end of the arm, which is accelerated or decelerated by the motor to stabilize the pendulum.
 
 Drive
 DC motor: JGA25-370, 12 V DC motor with an integrated encoder.
-The encoder signals are calculate the wheel’s rotational speed (RPM).
-The gear reduction ratio of the motor should be considered in the measurements.
+The encoder signals are calculate the wheel’s rotational speed (RPM). The gear reduction ratio of the motor should be considered in the measurements.
 
 Electronic Setup
 Microcontroller: Arduino UNO
@@ -42,13 +40,9 @@ The inverted pendulum is naturally unstable in the upright position if left alon
 
 A controller continuously reads the pendulum’s angle and angular velocity, and decides how much the motor should accelerate or decelerate the reaction wheel. In this way, the system can maintain balance even if small disturbances occur.
 
-Mathematically, the system can be described by the dynamics of the inverted pendulum with a reaction wheel. Let:
-
-- θ = pendulum angle
-- ω = angular velocity of the pendulum
-- u = control input
-
+Mathematically, the system can be described by the dynamics of the inverted pendulum with a reaction wheel.
 The controller uses feedback from θ and ω to compute the torque command u according to a control law, for example a PID controller:
+![PID](https://github.com/Technische-Natuurkunde-HvA/inverted-pendulum-international-team-1/blob/main/visuals/figures/PID.png)
 Kp,Kd,Ki are the proportional, derivative, and integral gains.
 
 ---
