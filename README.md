@@ -204,4 +204,12 @@ Collaborating Institutions:
 ## 9. Repository
 Project repository:
 
+inverted-pendulum-international-team-x/
+├─ code/ # Arduino and Python code AND Measurement files (csv, dat, txt)
+├─ feedback/ # Internal team/supervisor comments
+├─ progress/ # Weekly markdown reports (raw material)
+├─ visuals/ # Photos, plots, diagrams, videos
+├─ docs/
+│ └─ index.md # Public project documentation (for GitHub Pages)
+└─ README.md # Technical repo overview for GitHub users
 
