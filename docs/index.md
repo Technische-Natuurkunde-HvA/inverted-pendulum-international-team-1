@@ -145,7 +145,10 @@ Curves created from those datas:(0;255)
 
 Records the pendulum angle and motor output while the system is actively balancing.
 
-Video about the pendulum balancing
+Time-lapse: Pendulum Stability:
+- [Watch the pendulum balancing](https://youtube.com/shorts/owcCYEMpBoo?si=FQ8dx7qpwToPkynY)
+
+Pendulum returning to equilibrium after disturbances:
 - [Watch the pendulum balancing](https://github.com/Technische-Natuurkunde-HvA/inverted-pendulum-international-team-1/blob/main/visuals/videos/Amsterdam/Video%20van%20WhatsApp%20op%202025-12-05%20om%2016.32.28_f4a7a739.mp4)
 
 ---
@@ -161,18 +164,22 @@ The pendulum has shown significant improvement on both sites. In Lisbon, the whe
 ## 7. Project Timeline
 
 **Week 2** 
+
 We successfully executed the motor control testing cycle, incrementally increasing the PWM value from 0 to 255 while recording five measurements at each 1-second interval. While the primary data collection is complete, the critical next step is to implement the necessary Python code to automatically save these measured values for proper analysis. Furthermore, a key finding from our reflection is that the wheels were printed with different fill percentages; this physical variation in mass and friction necessitates a careful comparison of our results to account for these inconsistencies.
 - [Week 2 report](https://github.com/Technische-Natuurkunde-HvA/inverted-pendulum-international-team-1/blob/main/progress/Week%202.md)
 
 **Week 3** 
+
 We implemented the Python code for the automatic processing of measured data and the creation of graphs. As a result, we created three main graphs (PWM-RPM, PWM-FREQ, RPM-Time) and their corresponding CSV files, documenting three different test conditions: PWM increase from 0 to 255, direction change from −255 to 255, and decrease from 0 to −255. As a reflection, for the next week, we will 3D-print a wheel with a larger diameter (200mm) with a completely flat backside to increase stability and eliminate wobbling. Furthermore, planning has begun for the angle-vs-time graphs to visually verify the control system's performance.
 - [Week 3 report](https://github.com/Technische-Natuurkunde-HvA/inverted-pendulum-international-team-1/blob/main/progress/Week%203.md)
 
 **Week 4** 
+
 The main focus this week was on fine-tuning the PID controller codes. Regarding results: the Amsterdam team successfully achieved stabilization of the wheel in the middle (upright) position, which was captured on video. On the Lisbon side, the wheel already stabilizes with ease when starting from the bottom, but maintaining the middle position still requires work. As a reflection and next step, the Amsterdam team will focus on making the wheel transition from the bottom to the middle, while the Lisbon team will attempt to achieve stable central positioning by modifying the PID controls. Furthermore, work will begin on creating the graphs and collecting the data for PWM-vs-angle under the influence of the PID algorithm.
 - [Week 4 report](https://github.com/Technische-Natuurkunde-HvA/inverted-pendulum-international-team-1/blob/main/progress/Week%204.md)
 
 **Week 5** 
+
 This week, as a result, the Lisbon team successfully solved the issue of stabilizing and maintaining the wheel in the center. The wheel is now able to rapidly move from rest to the setpoint and remain stable for long periods, as documented in the uploaded timelapse video. On the Amsterdam side, the wheel is now capable of starting from the upside-down position and quickly reaching the top setpoint. As a reflection, the main ongoing challenge for the Lisbon side is the lack of reliability of the AS5600 sensor, which occasionally outputs angle measurements with significant errors.
 - [Week 5 report](https://github.com/Technische-Natuurkunde-HvA/inverted-pendulum-international-team-1/blob/main/progress/Week%205.md)
 
@@ -183,18 +190,18 @@ This week, as a result, the Lisbon team successfully solved the issue of stabili
 Our project team is composed of two groups: the Portuguese team and the Amsterdam team.
 
 Portuguese Team:
-Artur Matos – Physics Engineering student, ISEL
-Tiago Bernardo – Physics Engineering student, ISEL
-Hollo Milan – Erasmus student, Mechanical Engineering, BME
+- Artur Matos – Physics Engineering student, ISEL
+- Tiago Bernardo – Physics Engineering student, ISEL
+- Hollo Milan – Erasmus student, Mechanical Engineering, BME
 
 Amsterdam Team:
-Casper van Schaardenburg – Student, Amsterdam University of Applied Sciences
-Silvan van der Leij – Student, Amsterdam University of Applied Sciences
-Ashley Marsman – Student, Amsterdam University of Applied Sciences
+- Casper van Schaardenburg – Student, Amsterdam University of Applied Sciences
+- Silvan van der Leij – Student, Amsterdam University of Applied Sciences
+- Ashley Marsman – Student, Amsterdam University of Applied Sciences
 
 Collaborating Institutions:
-ISEL - Instituto Superior de Engenharia de Lisboa
-Amsterdam University of Applied Sciences
+- ISEL - Instituto Superior de Engenharia de Lisboa
+- Amsterdam University of Applied Sciences
 
 ---
 
