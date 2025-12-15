@@ -16,25 +16,26 @@ Inverted pendulums are interesting because they are naturally unstable without c
 The experimental setup is a flywheel-driven inverted pendulum consisting of mechanical and electronic components.
 
 **Mechanical Setup:**
-Pendulum arm: 3D-printed arm that freely rotates around its pivot axis.
-Angle sensor: a rotary encoder to measure the arm’s tilt.
-Reaction wheel: a 3D-printed flywheel attached to the end of the arm, which is accelerated or decelerated by the motor to stabilize the pendulum.
+- Pendulum arm: 3D-printed arm that freely rotates around its pivot axis.
+- Angle sensor: a rotary encoder to measure the arm’s tilt.
+- Reaction wheel: a 3D-printed flywheel attached to the end of the arm, which is accelerated or decelerated by the motor to stabilize the pendulum.
 
-- [Reaction wheel](https://github.com/Technische-Natuurkunde-HvA/inverted-pendulum-international-team-1/blob/main/visuals/videos/Lissabon/Wheel_2.JPEG)
+- [Picture of the reaction wheel](https://github.com/Technische-Natuurkunde-HvA/inverted-pendulum-international-team-1/blob/main/visuals/videos/Lissabon/Wheel_2.JPEG)
 
 **Drive:**
-DC motor: JGA25-370, 12 V DC motor with an integrated encoder.
-The encoder signals are calculate the wheel’s rotational speed (RPM). The gear reduction ratio of the motor should be considered in the measurements.
+- DC motor: JGA25-370, 12 V DC motor with an integrated encoder.
+- The encoder signals are calculate the wheel’s rotational speed (RPM).
+- The gear reduction ratio of the motor should be considered in the measurements.
 
 **Electronic Setup:**
-Microcontroller: Arduino UNO
-Motor driver: L298N motor driver, which controls the JGA25-370 motor via PWM.
+- Microcontroller: Arduino UNO
+- Motor driver: L298N motor driver, which controls the JGA25-370 motor via PWM.
 
 **Power supply:**
-The motor is powered by an external 12 V DC supply
-The Arduino receives power through USB from the computer
+- The motor is powered by an external 12 V DC supply
+- The Arduino receives power through USB from the computer
 
-- [Setup overview](https://github.com/Technische-Natuurkunde-HvA/inverted-pendulum-international-team-1/blob/main/visuals/videos/Lissabon/Overview_2.JPEG)
+- [Picture of the setup](https://github.com/Technische-Natuurkunde-HvA/inverted-pendulum-international-team-1/blob/main/visuals/videos/Lissabon/Overview_2.JPEG)
 
 ---
 
@@ -42,7 +43,9 @@ The Arduino receives power through USB from the computer
 
 The inverted pendulum is naturally unstable in the upright position if left alone, it will fall over. To keep it balanced, we use a reaction wheel. By accelerating or braking the wheel, we generate a torque that counteracts the pendulum’s motion and keeps it upright.
 
-The presented code implements the principles of a **discrete-time, closed-loop PID (Proportional-Integral-Derivative) control system**, designed for dynamic positioning of a motor or physical system.
+The codes implement the principles of discrete-time, closed-loop PID (Proportional-Integral-Derivative) control systems, designed for the dynamic positioning of motors or physical systems. 
+
+- [See the codes in:](https://github.com/Technische-Natuurkunde-HvA/inverted-pendulum-international-team-1/tree/main/code/Amsterdam/c%2B%2B)
 
 ### 3.1. The Control Basis (Error Calculation)
 
@@ -108,6 +111,10 @@ The scripts automatically generate plots using matplotlib from the CSV data.
 Examples: RPM vs OUT, Frequency vs OUT, RPM vs Time for the first script; OUT vs Angle for the second.
 All plots are saved in timestamped folders (graphs_timestamp or visuals_timestamp) for easy organization.
 
+### 4.3 Additional challenge
+
+
+
 ---
 
 ## 5. Experiments and Data
@@ -119,31 +126,14 @@ Measurement files (csv) are located in:
 - [Angle data](https://github.com/Technische-Natuurkunde-HvA/inverted-pendulum-international-team-1/blob/main/code/Lissabon/csv/codedata_20251209_155822.csv)
   
 Curves created from those datas:(-255;255)
-
   
 ![freq vs out](https://github.com/Technische-Natuurkunde-HvA/inverted-pendulum-international-team-1/blob/main/visuals/figures/GraphsRPM_PWM/graficos_(-255%2C255)/freq_vs_out.png)
 ![rpm vs out](https://github.com/Technische-Natuurkunde-HvA/inverted-pendulum-international-team-1/blob/main/visuals/figures/GraphsRPM_PWM/graficos_(-255%2C255)/rpm_vs_out.png)
 ![rpm vs tempo](https://github.com/Technische-Natuurkunde-HvA/inverted-pendulum-international-team-1/blob/main/visuals/figures/GraphsRPM_PWM/graficos_(-255%2C255)/rpm_vs_tempo.png)
 
-
-Curves created from those datas:(0;-255)
-
-  
-![freq vs out](https://github.com/Technische-Natuurkunde-HvA/inverted-pendulum-international-team-1/blob/main/visuals/figures/GraphsRPM_PWM/graficos_(0%2C-255)/freq_vs_out.png)
-![rpm vs out](https://github.com/Technische-Natuurkunde-HvA/inverted-pendulum-international-team-1/blob/main/visuals/figures/GraphsRPM_PWM/graficos_(0%2C-255)/rpm_vs_out.png)
-![rpm vs tempo](https://github.com/Technische-Natuurkunde-HvA/inverted-pendulum-international-team-1/blob/main/visuals/figures/GraphsRPM_PWM/graficos_(0%2C-255)/rpm_vs_tempo.png)
-
-  
-Curves created from those datas:(0;255)
-
-  
-![freq vs out](https://github.com/Technische-Natuurkunde-HvA/inverted-pendulum-international-team-1/blob/main/visuals/figures/GraphsRPM_PWM/graficos_(0%2C255)/freq_vs_out.png)
-![rpm vs out](https://github.com/Technische-Natuurkunde-HvA/inverted-pendulum-international-team-1/blob/main/visuals/figures/GraphsRPM_PWM/graficos_(0%2C255)/rpm_vs_out.png)
-![rpm vs tempo](https://github.com/Technische-Natuurkunde-HvA/inverted-pendulum-international-team-1/blob/main/visuals/figures/GraphsRPM_PWM/graficos_(0%2C255)/rpm_vs_tempo.png)
+Records the pendulum angle and motor output while the system is actively balancing:
 
 ![out vs angle](https://github.com/Technische-Natuurkunde-HvA/inverted-pendulum-international-team-1/blob/main/visuals/figures/out_vs_sig_angle_deg.png)
-
-Records the pendulum angle and motor output while the system is actively balancing.
 
 Time-lapse: Pendulum Stability:
 - [Watch the pendulum stability](https://youtube.com/shorts/owcCYEMpBoo?si=FQ8dx7qpwToPkynY)
