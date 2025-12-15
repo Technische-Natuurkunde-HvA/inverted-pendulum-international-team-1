@@ -114,7 +114,7 @@ All plots are saved in timestamped folders (graphs_timestamp or visuals_timestam
 **Second PID:**
 This [2nd PID](https://github.com/Technische-Natuurkunde-HvA/inverted-pendulum-international-team-1/blob/main/code/Amsterdam/c%2B%2B/pid_controler_second_HVA_v1.ino) addresses the challenge of maintaining a vertical (balancing) inverted pendulum by utilizing a Cascade (Two-Stage) PID Controller. This method is necessary because it strategically separates the system's control problems: the outer PID corrects the angle error, while the inner PID ensures the motor precisely tracks the speed commanded by the outer loop, compensating for the motor's inherent lag and friction. This approach achieves faster response, greater accuracy, and significantly more stable control compared to using a single PID loop.
 
-**Swing up:**
+**Upside down**
 
 Furthermore, the latest [program](https://github.com/Technische-Natuurkunde-HvA/inverted-pendulum-international-team-1/blob/main/code/Amsterdam/c%2B%2B/upside_down_V1.ino) also solves the swing-up problem: it uses built-in, simple logic (threshold-based control) to forcibly swing the pendulum up from the bottom position into the range where the Cascade PID can take over the balancing task.
 
