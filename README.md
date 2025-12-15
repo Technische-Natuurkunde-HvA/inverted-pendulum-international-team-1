@@ -4,7 +4,7 @@ As part of the COIL project, we are working together as an international team. T
 ---
 
 ## 1. Github structure
-Our github is split in 5 sections. The first section is [code] (https://github.com/Technische-Natuurkunde-HvA/inverted-pendulum-international-team-1/tree/main/code)
+Our github is split in 5 sections. The first section is [code] ([https://github.com/Technische-Natuurkunde-HvA/inverted-pendulum-international-team-1/tree/main/code](https://github.com/Technische-Natuurkunde-HvA/inverted-pendulum-international-team-1/tree/89ee5c7ce745d3499d520e6a0e20eb7e9acb6b08/code))
 
 ---
 
