@@ -97,13 +97,13 @@ The code is suitable for the following purposes:
     
 ### 4.2 Python Tools
 
-**Reading measurement files**
+**Reading measurement files:**
 
 The Python scripts read data from the Arduino in real time via the serial port and save it to CSV files.
 The first [script](https://github.com/Technische-Natuurkunde-HvA/inverted-pendulum-international-team-1/blob/main/code/Lissabon/python/data.py) logs rpm, freq, and out values at each sampling step, while the second [script](https://github.com/Technische-Natuurkunde-HvA/inverted-pendulum-international-team-1/blob/main/code/Lissabon/python/PIDdata.py)  logs out and sig_angle_deg.
 Each row in the CSV represents one measurement with a timestamp or sequential index.
 
-**Generating plots**
+**Generating plots:**
 
 The scripts automatically generate plots using matplotlib from the CSV data.
 Examples: RPM vs OUT, Frequency vs OUT, RPM vs Time for the first script; OUT vs Angle for the second.
@@ -130,20 +130,35 @@ Measurement files (csv) are located in:
 - [Angle data](https://github.com/Technische-Natuurkunde-HvA/inverted-pendulum-international-team-1/blob/main/code/Lissabon/csv/codedata_20251209_155822.csv)
   
 Curves created from those datas:(-255;255)
-  
+
+ 1. Frequency vs. Output
+
+This curve reveals the system's dynamic behavior and stability across the full motor power range (−255 to 255) . 
 ![freq vs out](https://github.com/Technische-Natuurkunde-HvA/inverted-pendulum-international-team-1/blob/main/visuals/figures/GraphsRPM_PWM/graficos_(-255%2C255)/freq_vs_out.png)
+
+2. RPM vs. Output
+
+The RPM vs. Output curve is necessary for understanding the motor's deadzone and linearity . It determines the minimum PWM signal required to start the motor, which is critical for compensating the PID controller's output so that the motor responds to even the smallest corrections.
 ![rpm vs out](https://github.com/Technische-Natuurkunde-HvA/inverted-pendulum-international-team-1/blob/main/visuals/figures/GraphsRPM_PWM/graficos_(-255%2C255)/rpm_vs_out.png)
-![rpm vs tempo](https://github.com/Technische-Natuurkunde-HvA/inverted-pendulum-international-team-1/blob/main/visuals/figures/GraphsRPM_PWM/graficos_(-255%2C255)/rpm_vs_tempo.png)
+
+3. RPM vs. Time
+
+The RPM vs. Time curve describes the motor's dynamic reaction to a sudden command.
+![rpm vs time](https://github.com/Technische-Natuurkunde-HvA/inverted-pendulum-international-team-1/blob/main/visuals/figures/GraphsRPM_PWM/graficos_(-255%2C255)/rpm_vs_tempo.png)
+
+4. Angle vs. Output
 
 Records the pendulum angle and motor output while the system is actively balancing:
-
-![out vs angle](https://github.com/Technische-Natuurkunde-HvA/inverted-pendulum-international-team-1/blob/main/visuals/figures/out_vs_sig_angle_deg.png)
+![angle vs out](https://github.com/Technische-Natuurkunde-HvA/inverted-pendulum-international-team-1/blob/main/visuals/figures/out_vs_sig_angle_deg.png)
 
 Time-lapse: Pendulum Stability:
 - [Watch the pendulum stability](https://youtube.com/shorts/owcCYEMpBoo?si=FQ8dx7qpwToPkynY)
 
 Pendulum returning to equilibrium after disturbances:
 - [Watch the pendulum balancing](https://github.com/Technische-Natuurkunde-HvA/inverted-pendulum-international-team-1/blob/main/visuals/videos/Amsterdam/Video%20van%20WhatsApp%20op%202025-12-05%20om%2016.32.28_f4a7a739.mp4)
+
+Making an upside-down pendulum:
+- [upside-down](https://github.com/Technische-Natuurkunde-HvA/inverted-pendulum-international-team-1/blob/main/visuals/videos/Amsterdam/Upside_down.mp4)
 
 ---
 
