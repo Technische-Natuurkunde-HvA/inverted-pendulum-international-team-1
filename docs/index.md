@@ -80,11 +80,11 @@ Example a PID controller:
 ## 4. Implementation
 ### 4.1 Arduino Control Software
 
-The initial step in project setup involves using the - [motor_encoder_simple](https://github.com/Technische-Natuurkunde-HvA/inverted-pendulum-international-team-1/blob/main/code/Lissabon/c%2B%2B/Motor_encoder_simple.ino) file to test the motor and quantify its deadzone. The deadzone is the phenomenon where the motor fails to respond to low input PWM values due to internal friction. Knowing this mechanical limitation is critical for successful PID control.
+The initial step in project setup involves using the [motor_encoder_simple](https://github.com/Technische-Natuurkunde-HvA/inverted-pendulum-international-team-1/blob/main/code/Lissabon/c%2B%2B/Motor_encoder_simple.ino) file to test the motor and quantify its deadzone. The deadzone is the phenomenon where the motor fails to respond to low input PWM values due to internal friction. Knowing this mechanical limitation is critical for successful PID control.
 
 **Main control loop**
 
-- [PID control]()
+- [PID control](https://github.com/Technische-Natuurkunde-HvA/inverted-pendulum-international-team-1/blob/main/code/Amsterdam/c%2B%2B/PID_control_simple.ino)
 
 This code implements a Single-Loop PID Controller, specifically designed to stabilize and maintain pendulum around its unstable equilibrium point.
 The code is suitable for the following purposes:
@@ -100,7 +100,7 @@ The code is suitable for the following purposes:
 **Reading measurement files**
 
 The Python scripts read data from the Arduino in real time via the serial port and save it to CSV files.
-The first - [script](https://github.com/Technische-Natuurkunde-HvA/inverted-pendulum-international-team-1/blob/main/code/Lissabon/python/data.py) logs rpm, freq, and out values at each sampling step, while the second - [script](https://github.com/Technische-Natuurkunde-HvA/inverted-pendulum-international-team-1/blob/main/code/Lissabon/python/PIDdata.py)  logs out and sig_angle_deg.
+The first [script](https://github.com/Technische-Natuurkunde-HvA/inverted-pendulum-international-team-1/blob/main/code/Lissabon/python/data.py) logs rpm, freq, and out values at each sampling step, while the second [script](https://github.com/Technische-Natuurkunde-HvA/inverted-pendulum-international-team-1/blob/main/code/Lissabon/python/PIDdata.py)  logs out and sig_angle_deg.
 Each row in the CSV represents one measurement with a timestamp or sequential index.
 
 **Generating plots**
@@ -112,11 +112,11 @@ All plots are saved in timestamped folders (graphs_timestamp or visuals_timestam
 ### 4.3 Additional challenge
 
 **Second PID:**
-This - [2nd PID](https://github.com/Technische-Natuurkunde-HvA/inverted-pendulum-international-team-1/blob/main/code/Amsterdam/c%2B%2B/pid_controler_second_HVA_v1.ino) addresses the challenge of maintaining a vertical (balancing) inverted pendulum by utilizing a Cascade (Two-Stage) PID Controller. This method is necessary because it strategically separates the system's control problems: the outer PID corrects the angle error, while the inner PID ensures the motor precisely tracks the speed commanded by the outer loop, compensating for the motor's inherent lag and friction. This approach achieves faster response, greater accuracy, and significantly more stable control compared to using a single PID loop.
+This [2nd PID](https://github.com/Technische-Natuurkunde-HvA/inverted-pendulum-international-team-1/blob/main/code/Amsterdam/c%2B%2B/pid_controler_second_HVA_v1.ino) addresses the challenge of maintaining a vertical (balancing) inverted pendulum by utilizing a Cascade (Two-Stage) PID Controller. This method is necessary because it strategically separates the system's control problems: the outer PID corrects the angle error, while the inner PID ensures the motor precisely tracks the speed commanded by the outer loop, compensating for the motor's inherent lag and friction. This approach achieves faster response, greater accuracy, and significantly more stable control compared to using a single PID loop.
 
 **Swing up:**
 
-Furthermore, the latest - [program](https://github.com/Technische-Natuurkunde-HvA/inverted-pendulum-international-team-1/blob/main/code/Amsterdam/c%2B%2B/upside_down_V1.ino) also solves the swing-up problem: it uses built-in, simple logic (threshold-based control) to forcibly swing the pendulum up from the bottom position into the range where the Cascade PID can take over the balancing task.
+Furthermore, the latest [program](https://github.com/Technische-Natuurkunde-HvA/inverted-pendulum-international-team-1/blob/main/code/Amsterdam/c%2B%2B/upside_down_V1.ino) also solves the swing-up problem: it uses built-in, simple logic (threshold-based control) to forcibly swing the pendulum up from the bottom position into the range where the Cascade PID can take over the balancing task.
 
 ---
 
