@@ -45,7 +45,7 @@ The inverted pendulum is naturally unstable in the upright position if left alon
 
 The codes implement the principles of discrete-time, closed-loop PID (Proportional-Integral-Derivative) control systems, designed for the dynamic positioning of motors or physical systems. 
 
-- [See the codes in:](https://github.com/Technische-Natuurkunde-HvA/inverted-pendulum-international-team-1/tree/main/code/Amsterdam/c%2B%2B)
+- [See the codes](https://github.com/Technische-Natuurkunde-HvA/inverted-pendulum-international-team-1/tree/main/code/Amsterdam/c%2B%2B)
 
 ### 3.1. The Control Basis (Error Calculation)
 
@@ -80,29 +80,27 @@ Example a PID controller:
 ## 4. Implementation
 ### 4.1 Arduino Control Software
 
-**Main control loop frequency**
+The initial step in project setup involves using the - [motor_encoder_simple](https://github.com/Technische-Natuurkunde-HvA/inverted-pendulum-international-team-1/blob/main/code/Lissabon/c%2B%2B/Motor_encoder_simple.ino) file to test the motor and quantify its deadzone. The deadzone is the phenomenon where the motor fails to respond to low input PWM values due to internal friction. Knowing this mechanical limitation is critical for successful PID control.
 
-- The PID code samples the sensor and computes the motor output every 5 ms (~200 Hz).
-- The control code reads the sensor every 100 ms.
-- The pulse-counter code calculates frequency and RPM every 200 ms.
+**Main control loop**
 
-The setup() initializes the sensor, motor outputs, and serial communication.
-The loop() runs continuously, executing the control logic.
+- [PID control]()
 
-**Sensor readings and motor outputs**
+This code implements a Single-Loop PID Controller, specifically designed to stabilize and maintain pendulum around its unstable equilibrium point.
+The code is suitable for the following purposes:
 
-- The AS5600 magnetic sensor provides the pendulum angle in degrees.
-- The pulse-counter code measures motor RPM from encoder pulses.
-- The PID code calculates motor PWM output from angle and angular velocity feedback.
-- The threshold-based code sets motor direction and speed based on the angle using simple logic.
-- All codes log the key values to the serial monitor (RPM, out, sig_angle_deg).
+  High-Frequency Stabilization: The primary function is to keep the pendulum balanced at the preset target position (setpoint, representing the vertical angle). It achieves this by operating at a high sampling frequency of 200 Hz (FREE_RUN_PERIOD_MS = 5$ ms), allowing for quick, continuous error correction necessary for unstable systems.
 
+  Angle-Based Control: It uses the AS5600 magnetic encoder to measure the deviation angle (sig_angle_deg). The PID algorithm, tuned with parameters like Kp​=90, processes this angle error to calculate the necessary motor output power (output).
+
+  Proportional Motor Output: The calculated output determines both the direction (positive/negative sign controls motorPin1 and motorPin2) and the magnitude (PWM signal via analogWrite(enablePin, abs(output))) of the corrective force applied to the pendulum.
+    
 ### 4.2 Python Tools
 
 **Reading measurement files**
 
 The Python scripts read data from the Arduino in real time via the serial port and save it to CSV files.
-The first script logs rpm, freq, and out values at each sampling step, while the second script logs out and sig_angle_deg.
+The first - [script](https://github.com/Technische-Natuurkunde-HvA/inverted-pendulum-international-team-1/blob/main/code/Lissabon/python/data.py) logs rpm, freq, and out values at each sampling step, while the second - [script](https://github.com/Technische-Natuurkunde-HvA/inverted-pendulum-international-team-1/blob/main/code/Lissabon/python/PIDdata.py)  logs out and sig_angle_deg.
 Each row in the CSV represents one measurement with a timestamp or sequential index.
 
 **Generating plots**
@@ -113,7 +111,12 @@ All plots are saved in timestamped folders (graphs_timestamp or visuals_timestam
 
 ### 4.3 Additional challenge
 
+**Second PID:**
+This - [2nd PID](https://github.com/Technische-Natuurkunde-HvA/inverted-pendulum-international-team-1/blob/main/code/Amsterdam/c%2B%2B/pid_controler_second_HVA_v1.ino) addresses the challenge of maintaining a vertical (balancing) inverted pendulum by utilizing a Cascade (Two-Stage) PID Controller. This method is necessary because it strategically separates the system's control problems: the outer PID corrects the angle error, while the inner PID ensures the motor precisely tracks the speed commanded by the outer loop, compensating for the motor's inherent lag and friction. This approach achieves faster response, greater accuracy, and significantly more stable control compared to using a single PID loop.
 
+**Swing up:**
+
+Furthermore, the latest - [program](https://github.com/Technische-Natuurkunde-HvA/inverted-pendulum-international-team-1/blob/main/code/Amsterdam/c%2B%2B/upside_down_V1.ino) also solves the swing-up problem: it uses built-in, simple logic (threshold-based control) to forcibly swing the pendulum up from the bottom position into the range where the Cascade PID can take over the balancing task.
 
 ---
 
