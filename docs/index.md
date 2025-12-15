@@ -20,7 +20,7 @@ Pendulum arm: 3D-printed arm that freely rotates around its pivot axis.
 Angle sensor: a rotary encoder to measure the arm’s tilt.
 Reaction wheel: a 3D-printed flywheel attached to the end of the arm, which is accelerated or decelerated by the motor to stabilize the pendulum.
 
-![System overview]()
+- [Reaction wheel](https://github.com/Technische-Natuurkunde-HvA/inverted-pendulum-international-team-1/blob/main/visuals/videos/Lissabon/Wheel_2.JPEG)
 
 **Drive:**
 DC motor: JGA25-370, 12 V DC motor with an integrated encoder.
@@ -34,7 +34,7 @@ Motor driver: L298N motor driver, which controls the JGA25-370 motor via PWM.
 The motor is powered by an external 12 V DC supply
 The Arduino receives power through USB from the computer
 
-![System overview]()
+- [Setup overview](https://github.com/Technische-Natuurkunde-HvA/inverted-pendulum-international-team-1/blob/main/visuals/videos/Lissabon/Overview_2.JPEG)
 
 ---
 
