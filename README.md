@@ -202,7 +202,7 @@ Collaborating Institutions:
 Project repository:
 
 ```text
-inverted-pendulum-international-team-x/
+inverted-pendulum-international-team-1
 ├─ code/ # Arduino and Python code AND Measurement files (csv, dat, txt)
 ├─ feedback/ # Internal team/supervisor comments
 ├─ progress/ # Weekly markdown reports (raw material)
