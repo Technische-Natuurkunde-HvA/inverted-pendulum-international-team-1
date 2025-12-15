@@ -38,12 +38,42 @@ The Arduino receives power through USB from the computer
 
 The inverted pendulum is naturally unstable in the upright position if left alone, it will fall over. To keep it balanced, we use a reaction wheel. By accelerating or braking the wheel, we generate a torque that counteracts the pendulum’s motion and keeps it upright.
 
-A controller continuously reads the pendulum’s angle and angular velocity, and decides how much the motor should accelerate or decelerate the reaction wheel. In this way, the system can maintain balance even if small disturbances occur.
+The presented code implements the principles of a **discrete-time, closed-loop PID (Proportional-Integral-Derivative) control system**, designed for dynamic positioning of a motor or physical system.
 
-Mathematically, the system can be described by the dynamics of the inverted pendulum with a reaction wheel.
-The controller uses feedback from θ and ω to compute the torque command u according to a control law, for example a PID controller:
+### 3.1. The Control Basis (Error Calculation)
+
+The foundation of the control loop is the continuous determination of the **Error ($e(t)$)**, which is the difference between the desired target (Setpoint, $SP$) and the measured real state (AS5600 angle, $\theta(t)$):
+
+$$
+e(t) = SP - \theta(t)
+$$
+
+* **$SP$ (Setpoint):** The desired angular position (e.g., $0^{\circ}$ or $235.66^{\circ}$).
+* **$\theta(t)$ (Measured Angle):** The actual angle read from the AS5600, calculated using:
+    $$
+    \theta(t) = \text{AS5600\_Value} \times \frac{360}{4096}
+    $$
+    (Where $\frac{360}{4096} \approx 0.0879^{\circ}/\text{LSB}$).
+
+### 3.2 The PID Control Law
+
+The controller (PID) calculates the **Output Signal (`output`)** as a weighted sum of the three components of the error signal. This signal drives the motor:
+
+$$
+u(t) = \underbrace{K_p e(t)}_{\text{Proportional (P)}} + \underbrace{K_i \int_{0}^{t} e(\tau) d\tau}_{\text{Integral (I)}} + \underbrace{K_d \frac{d e(t)}{d t}}_{\text{Derivative (D)}}
+$$
+
+
+* **P-term:** Proportional to the current error. This ensures a fast initial reaction.
+* **I-term:** Proportional to the sum (integral) of past errors. This component is responsible for eliminating the steady-state error (offset). 
+* **D-term:** Proportional to the rate of change of the error (derivative). This dampens overshoot (oscillation) and stabilizes the system.
+* 
+### 3.3. Output Limitation (Motor Drive)
+
+The calculated $u(t)$ signal must be limited by the physical constraints of the motor driver, which is the maximum PWM value ($\pm 255$):
+
+Example a PID controller:
 ![PID](https://github.com/Technische-Natuurkunde-HvA/inverted-pendulum-international-team-1/blob/main/visuals/figures/PID.png)
-Kp,Kd,Ki are the proportional, derivative, and integral gains.
 
 ---
 
