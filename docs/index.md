@@ -64,9 +64,10 @@ $$
 
 The calculated output signal must be limited by the physical constraints of the motor driver, which is the maximum PWM value ($\pm 255$):
 
-Example a PID controller:
-
+Example a PID controller:  
+<center>
 ![PID](https://github.com/Technische-Natuurkunde-HvA/inverted-pendulum-international-team-1/blob/main/visuals/figures/PID.png)
+</center>
 
 ---
 
@@ -79,8 +80,8 @@ Main control loop frequency:
 - The control code reads the sensor every 100 ms.
 - The pulse-counter code calculates frequency and RPM every 200 ms.
 
-setup() initializes the sensor, motor outputs, and serial communication.
-loop() runs continuously, executing the control logic.
+The setup() initializes the sensor, motor outputs, and serial communication.
+The loop() runs continuously, executing the control logic.
 
 Sensor readings and motor outputs:
 
@@ -108,41 +109,37 @@ All plots are saved in timestamped folders (graphs_timestamp or visuals_timestam
 
 ## 5. Experiments and Data
 
-Measurement files
-
+Measurement files (csv) are located in:
 - [Step response data](https://github.com/Technische-Natuurkunde-HvA/inverted-pendulum-international-team-1/blob/main/code/Lissabon/csv/data_(-255%2C255).csv)
+- [Step response data](https://github.com/Technische-Natuurkunde-HvA/inverted-pendulum-international-team-1/blob/main/code/Lissabon/csv/data_(0%2C-255).csv)
+- [Step response data](https://github.com/Technische-Natuurkunde-HvA/inverted-pendulum-international-team-1/blob/main/code/Lissabon/csv/data_(0%2C255).csv)
+- [Angle data](https://github.com/Technische-Natuurkunde-HvA/inverted-pendulum-international-team-1/blob/main/code/Lissabon/csv/codedata_20251209_155822.csv)
   
 Include images created from those datas:(-255;255)
-
+<center>
 ![freq vs out](https://github.com/Technische-Natuurkunde-HvA/inverted-pendulum-international-team-1/blob/main/visuals/figures/GraphsRPM_PWM/graficos_(-255%2C255)/freq_vs_out.png)
 ![rpm vs out](https://github.com/Technische-Natuurkunde-HvA/inverted-pendulum-international-team-1/blob/main/visuals/figures/GraphsRPM_PWM/graficos_(-255%2C255)/rpm_vs_out.png)
 ![rpm vs tempo](https://github.com/Technische-Natuurkunde-HvA/inverted-pendulum-international-team-1/blob/main/visuals/figures/GraphsRPM_PWM/graficos_(-255%2C255)/rpm_vs_tempo.png)
-
-- [Step response data](https://github.com/Technische-Natuurkunde-HvA/inverted-pendulum-international-team-1/blob/main/code/Lissabon/csv/data_(0%2C-255).csv)
+</center>
 
 Include images created from those datas:(0;-255)
-
+<center>
 ![freq vs out](https://github.com/Technische-Natuurkunde-HvA/inverted-pendulum-international-team-1/blob/main/visuals/figures/GraphsRPM_PWM/graficos_(0%2C-255)/freq_vs_out.png)
 ![rpm vs out](https://github.com/Technische-Natuurkunde-HvA/inverted-pendulum-international-team-1/blob/main/visuals/figures/GraphsRPM_PWM/graficos_(0%2C-255)/rpm_vs_out.png)
 ![rpm vs tempo](https://github.com/Technische-Natuurkunde-HvA/inverted-pendulum-international-team-1/blob/main/visuals/figures/GraphsRPM_PWM/graficos_(0%2C-255)/rpm_vs_tempo.png)
-
-- [Step response data](https://github.com/Technische-Natuurkunde-HvA/inverted-pendulum-international-team-1/blob/main/code/Lissabon/csv/data_(0%2C255).csv)
+</center>
   
 Include images created from those datas:(0;255)
-
+<center>
 ![freq vs out](https://github.com/Technische-Natuurkunde-HvA/inverted-pendulum-international-team-1/blob/main/visuals/figures/GraphsRPM_PWM/graficos_(0%2C255)/freq_vs_out.png)
 ![rpm vs out](https://github.com/Technische-Natuurkunde-HvA/inverted-pendulum-international-team-1/blob/main/visuals/figures/GraphsRPM_PWM/graficos_(0%2C255)/rpm_vs_out.png)
 ![rpm vs tempo](https://github.com/Technische-Natuurkunde-HvA/inverted-pendulum-international-team-1/blob/main/visuals/figures/GraphsRPM_PWM/graficos_(0%2C255)/rpm_vs_tempo.png)
 
-
-- [Angle data](https://github.com/Technische-Natuurkunde-HvA/inverted-pendulum-international-team-1/blob/main/code/Lissabon/csv/codedata_20251209_155822.csv)
-
 ![out vs angle](https://github.com/Technische-Natuurkunde-HvA/inverted-pendulum-international-team-1/blob/main/visuals/figures/out_vs_sig_angle_deg.png)
-
+</center>
 Records the pendulum angle and motor output while the system is actively balancing.
 
-Videos
-
+Videos:
 - [Watch the pendulum balancing](https://github.com/Technische-Natuurkunde-HvA/inverted-pendulum-international-team-1/blob/main/visuals/videos/Amsterdam/Video%20van%20WhatsApp%20op%202025-12-05%20om%2016.32.28_f4a7a739.mp4)
 
 ---
@@ -155,20 +152,20 @@ Summarize
 
 ## 7. Project Timeline
 
-**Week 2** We successfully executed the motor control testing cycle, incrementally increasing the PWM value from 0 to 255 while recording five measurements at each 1-second interval. While the primary data collection is complete, the critical next step is to implement the necessary Python code to automatically save these measured values for proper analysis. Furthermore, a key finding from our reflection is that the wheels were printed with different fill percentages; this physical variation in mass and friction necessitates a careful comparison of our results to account for these inconsistencies.
-
+**Week 2** 
+We successfully executed the motor control testing cycle, incrementally increasing the PWM value from 0 to 255 while recording five measurements at each 1-second interval. While the primary data collection is complete, the critical next step is to implement the necessary Python code to automatically save these measured values for proper analysis. Furthermore, a key finding from our reflection is that the wheels were printed with different fill percentages; this physical variation in mass and friction necessitates a careful comparison of our results to account for these inconsistencies.
 - [Week 2 report](https://github.com/Technische-Natuurkunde-HvA/inverted-pendulum-international-team-1/blob/main/progress/Week%202.md)
 
-**Week 3** We implemented the Python code for the automatic processing of measured data and the creation of graphs. As a result, we created three main graphs (PWM-RPM, PWM-FREQ, RPM-Time) and their corresponding CSV files, documenting three different test conditions: PWM increase from 0 to 255, direction change from −255 to 255, and decrease from 0 to −255. As a reflection, for the next week, we will 3D-print a wheel with a larger diameter (200mm) with a completely flat backside to increase stability and eliminate wobbling. Furthermore, planning has begun for the angle-vs-time graphs to visually verify the control system's performance.
-
+**Week 3** 
+We implemented the Python code for the automatic processing of measured data and the creation of graphs. As a result, we created three main graphs (PWM-RPM, PWM-FREQ, RPM-Time) and their corresponding CSV files, documenting three different test conditions: PWM increase from 0 to 255, direction change from −255 to 255, and decrease from 0 to −255. As a reflection, for the next week, we will 3D-print a wheel with a larger diameter (200mm) with a completely flat backside to increase stability and eliminate wobbling. Furthermore, planning has begun for the angle-vs-time graphs to visually verify the control system's performance.
 - [Week 3 report](https://github.com/Technische-Natuurkunde-HvA/inverted-pendulum-international-team-1/blob/main/progress/Week%203.md)
 
-**Week 4** The main focus this week was on fine-tuning the PID controller codes. Regarding results: the Amsterdam team successfully achieved stabilization of the wheel in the middle (upright) position, which was captured on video. On the Lisbon side, the wheel already stabilizes with ease when starting from the bottom, but maintaining the middle position still requires work. As a reflection and next step, the Amsterdam team will focus on making the wheel transition from the bottom to the middle, while the Lisbon team will attempt to achieve stable central positioning by modifying the PID controls. Furthermore, work will begin on creating the graphs and collecting the data for PWM-vs-angle under the influence of the PID algorithm.
-
+**Week 4** 
+The main focus this week was on fine-tuning the PID controller codes. Regarding results: the Amsterdam team successfully achieved stabilization of the wheel in the middle (upright) position, which was captured on video. On the Lisbon side, the wheel already stabilizes with ease when starting from the bottom, but maintaining the middle position still requires work. As a reflection and next step, the Amsterdam team will focus on making the wheel transition from the bottom to the middle, while the Lisbon team will attempt to achieve stable central positioning by modifying the PID controls. Furthermore, work will begin on creating the graphs and collecting the data for PWM-vs-angle under the influence of the PID algorithm.
 - [Week 4 report](https://github.com/Technische-Natuurkunde-HvA/inverted-pendulum-international-team-1/blob/main/progress/Week%204.md)
 
-**Week 5** This week, as a result, the Lisbon team successfully solved the issue of stabilizing and maintaining the wheel in the center. The wheel is now able to rapidly move from rest to the setpoint and remain stable for long periods, as documented in the uploaded timelapse video. On the Amsterdam side, the wheel is now capable of starting from the upside-down position and quickly reaching the top setpoint. As a reflection, the main ongoing challenge for the Lisbon side is the lack of reliability of the AS5600 sensor, which occasionally outputs angle measurements with significant errors.
-
+**Week 5** 
+This week, as a result, the Lisbon team successfully solved the issue of stabilizing and maintaining the wheel in the center. The wheel is now able to rapidly move from rest to the setpoint and remain stable for long periods, as documented in the uploaded timelapse video. On the Amsterdam side, the wheel is now capable of starting from the upside-down position and quickly reaching the top setpoint. As a reflection, the main ongoing challenge for the Lisbon side is the lack of reliability of the AS5600 sensor, which occasionally outputs angle measurements with significant errors.
 - [Week 5 report](https://github.com/Technische-Natuurkunde-HvA/inverted-pendulum-international-team-1/blob/main/progress/Week%205.md)
 
 ---
@@ -187,10 +184,7 @@ Casper van Schaardenburg – Student, Amsterdam University of Applied Sciences
 Silvan van der Leij – Student, Amsterdam University of Applied Sciences
 Ashley Marsman – Student, Amsterdam University of Applied Sciences
 
-Supervisors
-
-
-Collaborating Institutions
+Collaborating Institutions:
 ISEL - Instituto Superior de Engenharia de Lisboa
 Amsterdam University of Applied Sciences
 
