@@ -89,7 +89,7 @@ The initial step in project setup involves using the [motor_encoder_simple](http
 This code implements a Single-Loop PID Controller, specifically designed to stabilize and maintain pendulum around its unstable equilibrium point.
 The code is suitable for the following purposes:
 
-  High-Frequency Stabilization: The primary function is to keep the pendulum balanced at the preset target position (setpoint, representing the vertical angle). It achieves this by operating at a high sampling frequency of 200 Hz (FREE_RUN_PERIOD_MS = 5$ ms), allowing for quick, continuous error correction necessary for unstable systems.
+  High-Frequency Stabilization: The primary function is to keep the pendulum balanced at the preset target position (setpoint, representing the vertical angle). It achieves this by operating at a high sampling frequency of 200 Hz (FREE_RUN_PERIOD_MS = 5 ms), allowing for quick, continuous error correction necessary for unstable systems.
 
   Angle-Based Control: It uses the AS5600 magnetic encoder to measure the deviation angle (sig_angle_deg). The PID algorithm, tuned with parameters like Kp​=90, processes this angle error to calculate the necessary motor output power (output).
 
