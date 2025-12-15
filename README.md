@@ -16,21 +16,26 @@ Inverted pendulums are interesting because they are naturally unstable without c
 The experimental setup is a flywheel-driven inverted pendulum consisting of mechanical and electronic components.
 
 **Mechanical Setup:**
-Pendulum arm: 3D-printed arm that freely rotates around its pivot axis.
-Angle sensor: a rotary encoder to measure the arm’s tilt.
-Reaction wheel: a 3D-printed flywheel attached to the end of the arm, which is accelerated or decelerated by the motor to stabilize the pendulum.
+- Pendulum arm: 3D-printed arm that freely rotates around its pivot axis.
+- Angle sensor: a rotary encoder to measure the arm’s tilt.
+- Reaction wheel: a 3D-printed flywheel attached to the end of the arm, which is accelerated or decelerated by the motor to stabilize the pendulum.
+
+- [Picture of the reaction wheel](https://github.com/Technische-Natuurkunde-HvA/inverted-pendulum-international-team-1/blob/main/visuals/videos/Lissabon/Wheel_2.JPEG)
 
 **Drive:**
-DC motor: JGA25-370, 12 V DC motor with an integrated encoder.
-The encoder signals are calculate the wheel’s rotational speed (RPM). The gear reduction ratio of the motor should be considered in the measurements.
+- DC motor: JGA25-370, 12 V DC motor with an integrated encoder.
+- The encoder signals are calculate the wheel’s rotational speed (RPM).
+- The gear reduction ratio of the motor should be considered in the measurements.
 
 **Electronic Setup:**
-Microcontroller: Arduino UNO
-Motor driver: L298N motor driver, which controls the JGA25-370 motor via PWM.
+- Microcontroller: Arduino UNO
+- Motor driver: L298N motor driver, which controls the JGA25-370 motor via PWM.
 
 **Power supply:**
-The motor is powered by an external 12 V DC supply
-The Arduino receives power through USB from the computer
+- The motor is powered by an external 12 V DC supply
+- The Arduino receives power through USB from the computer
+
+- [Picture of the setup](https://github.com/Technische-Natuurkunde-HvA/inverted-pendulum-international-team-1/blob/main/visuals/videos/Lissabon/Overview_2.JPEG)
 
 ---
 
@@ -38,7 +43,9 @@ The Arduino receives power through USB from the computer
 
 The inverted pendulum is naturally unstable in the upright position if left alone, it will fall over. To keep it balanced, we use a reaction wheel. By accelerating or braking the wheel, we generate a torque that counteracts the pendulum’s motion and keeps it upright.
 
-The presented code implements the principles of a **discrete-time, closed-loop PID (Proportional-Integral-Derivative) control system**, designed for dynamic positioning of a motor or physical system.
+The codes implement the principles of discrete-time, closed-loop PID (Proportional-Integral-Derivative) control systems, designed for the dynamic positioning of motors or physical systems. 
+
+- [See the codes](https://github.com/Technische-Natuurkunde-HvA/inverted-pendulum-international-team-1/tree/main/code/Amsterdam/c%2B%2B)
 
 ### 3.1. The Control Basis (Error Calculation)
 
@@ -73,29 +80,27 @@ Example a PID controller:
 ## 4. Implementation
 ### 4.1 Arduino Control Software
 
-**Main control loop frequency**
+The initial step in project setup involves using the [motor_encoder_simple](https://github.com/Technische-Natuurkunde-HvA/inverted-pendulum-international-team-1/blob/main/code/Lissabon/c%2B%2B/Motor_encoder_simple.ino) file to test the motor and quantify its deadzone. The deadzone is the phenomenon where the motor fails to respond to low input PWM values due to internal friction. Knowing this mechanical limitation is critical for successful PID control.
 
-- The PID code samples the sensor and computes the motor output every 5 ms (~200 Hz).
-- The control code reads the sensor every 100 ms.
-- The pulse-counter code calculates frequency and RPM every 200 ms.
+**Main control loop**
 
-The setup() initializes the sensor, motor outputs, and serial communication.
-The loop() runs continuously, executing the control logic.
+- [PID control](https://github.com/Technische-Natuurkunde-HvA/inverted-pendulum-international-team-1/blob/main/code/Amsterdam/c%2B%2B/PID_control_simple.ino)
 
-**Sensor readings and motor outputs**
+This code implements a Single-Loop PID Controller, specifically designed to stabilize and maintain pendulum around its unstable equilibrium point.
+The code is suitable for the following purposes:
 
-- The AS5600 magnetic sensor provides the pendulum angle in degrees.
-- The pulse-counter code measures motor RPM from encoder pulses.
-- The PID code calculates motor PWM output from angle and angular velocity feedback.
-- The threshold-based code sets motor direction and speed based on the angle using simple logic.
-- All codes log the key values to the serial monitor (RPM, out, sig_angle_deg).
+  High-Frequency Stabilization: The primary function is to keep the pendulum balanced at the preset target position (setpoint, representing the vertical angle). It achieves this by operating at a high sampling frequency of 200 Hz (FREE_RUN_PERIOD_MS = 5$ ms), allowing for quick, continuous error correction necessary for unstable systems.
 
+  Angle-Based Control: It uses the AS5600 magnetic encoder to measure the deviation angle (sig_angle_deg). The PID algorithm, tuned with parameters like Kp​=90, processes this angle error to calculate the necessary motor output power (output).
+
+  Proportional Motor Output: The calculated output determines both the direction (positive/negative sign controls motorPin1 and motorPin2) and the magnitude (PWM signal via analogWrite(enablePin, abs(output))) of the corrective force applied to the pendulum.
+    
 ### 4.2 Python Tools
 
 **Reading measurement files**
 
 The Python scripts read data from the Arduino in real time via the serial port and save it to CSV files.
-The first script logs rpm, freq, and out values at each sampling step, while the second script logs out and sig_angle_deg.
+The first [script](https://github.com/Technische-Natuurkunde-HvA/inverted-pendulum-international-team-1/blob/main/code/Lissabon/python/data.py) logs rpm, freq, and out values at each sampling step, while the second [script](https://github.com/Technische-Natuurkunde-HvA/inverted-pendulum-international-team-1/blob/main/code/Lissabon/python/PIDdata.py)  logs out and sig_angle_deg.
 Each row in the CSV represents one measurement with a timestamp or sequential index.
 
 **Generating plots**
@@ -103,6 +108,15 @@ Each row in the CSV represents one measurement with a timestamp or sequential in
 The scripts automatically generate plots using matplotlib from the CSV data.
 Examples: RPM vs OUT, Frequency vs OUT, RPM vs Time for the first script; OUT vs Angle for the second.
 All plots are saved in timestamped folders (graphs_timestamp or visuals_timestamp) for easy organization.
+
+### 4.3 Additional challenge
+
+**Second PID:**
+This [2nd PID](https://github.com/Technische-Natuurkunde-HvA/inverted-pendulum-international-team-1/blob/main/code/Amsterdam/c%2B%2B/pid_controler_second_HVA_v1.ino) addresses the challenge of maintaining a vertical (balancing) inverted pendulum by utilizing a Cascade (Two-Stage) PID Controller. This method is necessary because it strategically separates the system's control problems: the outer PID corrects the angle error, while the inner PID ensures the motor precisely tracks the speed commanded by the outer loop, compensating for the motor's inherent lag and friction. This approach achieves faster response, greater accuracy, and significantly more stable control compared to using a single PID loop.
+
+**Upside down**
+
+Furthermore, the latest [program](https://github.com/Technische-Natuurkunde-HvA/inverted-pendulum-international-team-1/blob/main/code/Amsterdam/c%2B%2B/upside_down_V1.ino) also solves the swing-up problem: it uses built-in, simple logic (threshold-based control) to forcibly swing the pendulum up from the bottom position into the range where the Cascade PID can take over the balancing task.
 
 ---
 
@@ -115,31 +129,14 @@ Measurement files (csv) are located in:
 - [Angle data](https://github.com/Technische-Natuurkunde-HvA/inverted-pendulum-international-team-1/blob/main/code/Lissabon/csv/codedata_20251209_155822.csv)
   
 Curves created from those datas:(-255;255)
-
   
 ![freq vs out](https://github.com/Technische-Natuurkunde-HvA/inverted-pendulum-international-team-1/blob/main/visuals/figures/GraphsRPM_PWM/graficos_(-255%2C255)/freq_vs_out.png)
 ![rpm vs out](https://github.com/Technische-Natuurkunde-HvA/inverted-pendulum-international-team-1/blob/main/visuals/figures/GraphsRPM_PWM/graficos_(-255%2C255)/rpm_vs_out.png)
 ![rpm vs tempo](https://github.com/Technische-Natuurkunde-HvA/inverted-pendulum-international-team-1/blob/main/visuals/figures/GraphsRPM_PWM/graficos_(-255%2C255)/rpm_vs_tempo.png)
 
-
-Curves created from those datas:(0;-255)
-
-  
-![freq vs out](https://github.com/Technische-Natuurkunde-HvA/inverted-pendulum-international-team-1/blob/main/visuals/figures/GraphsRPM_PWM/graficos_(0%2C-255)/freq_vs_out.png)
-![rpm vs out](https://github.com/Technische-Natuurkunde-HvA/inverted-pendulum-international-team-1/blob/main/visuals/figures/GraphsRPM_PWM/graficos_(0%2C-255)/rpm_vs_out.png)
-![rpm vs tempo](https://github.com/Technische-Natuurkunde-HvA/inverted-pendulum-international-team-1/blob/main/visuals/figures/GraphsRPM_PWM/graficos_(0%2C-255)/rpm_vs_tempo.png)
-
-  
-Curves created from those datas:(0;255)
-
-  
-![freq vs out](https://github.com/Technische-Natuurkunde-HvA/inverted-pendulum-international-team-1/blob/main/visuals/figures/GraphsRPM_PWM/graficos_(0%2C255)/freq_vs_out.png)
-![rpm vs out](https://github.com/Technische-Natuurkunde-HvA/inverted-pendulum-international-team-1/blob/main/visuals/figures/GraphsRPM_PWM/graficos_(0%2C255)/rpm_vs_out.png)
-![rpm vs tempo](https://github.com/Technische-Natuurkunde-HvA/inverted-pendulum-international-team-1/blob/main/visuals/figures/GraphsRPM_PWM/graficos_(0%2C255)/rpm_vs_tempo.png)
+Records the pendulum angle and motor output while the system is actively balancing:
 
 ![out vs angle](https://github.com/Technische-Natuurkunde-HvA/inverted-pendulum-international-team-1/blob/main/visuals/figures/out_vs_sig_angle_deg.png)
-
-Records the pendulum angle and motor output while the system is actively balancing.
 
 Time-lapse: Pendulum Stability:
 - [Watch the pendulum stability](https://youtube.com/shorts/owcCYEMpBoo?si=FQ8dx7qpwToPkynY)
@@ -204,6 +201,7 @@ Collaborating Institutions:
 ## 9. Repository
 Project repository:
 
+```text
 inverted-pendulum-international-team-x/
 ├─ code/ # Arduino and Python code AND Measurement files (csv, dat, txt)
 ├─ feedback/ # Internal team/supervisor comments
@@ -212,4 +210,4 @@ inverted-pendulum-international-team-x/
 ├─ docs/
 │ └─ index.md # Public project documentation (for GitHub Pages)
 └─ README.md # Technical repo overview for GitHub users
-
+```
