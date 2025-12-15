@@ -112,9 +112,10 @@ All plots are saved in timestamped folders (graphs_timestamp or visuals_timestam
 ### 4.3 Additional challenge
 
 **Second PID:**
+
 This [2nd PID](https://github.com/Technische-Natuurkunde-HvA/inverted-pendulum-international-team-1/blob/main/code/Amsterdam/c%2B%2B/pid_controler_second_HVA_v1.ino) addresses the challenge of maintaining a vertical (balancing) inverted pendulum by utilizing a Cascade (Two-Stage) PID Controller. This method is necessary because it strategically separates the system's control problems: the outer PID corrects the angle error, while the inner PID ensures the motor precisely tracks the speed commanded by the outer loop, compensating for the motor's inherent lag and friction. This approach achieves faster response, greater accuracy, and significantly more stable control compared to using a single PID loop.
 
-**Upside down**
+**Upside down:**
 
 Furthermore, the latest [program](https://github.com/Technische-Natuurkunde-HvA/inverted-pendulum-international-team-1/blob/main/code/Amsterdam/c%2B%2B/upside_down_V1.ino) also solves the swing-up problem: it uses built-in, simple logic (threshold-based control) to forcibly swing the pendulum up from the bottom position into the range where the Cascade PID can take over the balancing task.
 
@@ -151,6 +152,10 @@ Pendulum returning to equilibrium after disturbances:
 **Summary of achievements**
 
 The pendulum has shown significant improvement on both sites. In Lisbon, the wheel is now able to move very quickly from the bumper to the setpoint and remain stable for long periods, solving the issue related to stabilizing it in the center. In Amsterdam, the wheel can start from a low position (-180º relative to the equilibrium position), reach the equilibrium position, and maintain stability, making the system almost fully functional. The main remaining challenge on the Lisbon side is the unreliability of the AS5600 sensor, which occasionally outputs significant errors in angle measurements. Overall, wheel stabilization and setpoint achievement have been successfully accomplished on both sites.
+
+**Refclections of our work**
+
+Throughout the project, the main difficulties were related to physical inconsistencies in the system and the reliability of the measurements. Differences in mechanical behavior and initial instability affected repeatability, while tuning the PID controllers required multiple iterations to achieve stable performance. A significant challenge was the limited reliability of the AS5600 sensor, which occasionally produced incorrect angle readings, negatively impacting control stability. As an aspect for improvement, an earlier validation of sensor accuracy and the use of signal filtering techniques would have increased the robustness and reliability of the control system.
 
 ---
 
