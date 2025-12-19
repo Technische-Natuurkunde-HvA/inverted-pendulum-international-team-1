@@ -12,11 +12,11 @@ const int pulsesPerRevolution = 11; // pulses per rotation from each encoder wir
 unsigned long lastTime = 0;   // store last time measurement
 double frequency = 0;         // measured frequency
 
-int output = 20;          // motor output value
+int output = -255;          // motor output value
 int aantal_metingen_teller =0;
 void countPulse();
 
-void setup() {
+void setup() {  
   pinMode(motorPin1, OUTPUT);
   pinMode(motorPin2, OUTPUT);
   pinMode(enablePin, OUTPUT);
@@ -31,9 +31,9 @@ void setup() {
 
 void loop() {
   // Motor direction + speed
-  if (aantal_metingen_teller >10){
+  if (aantal_metingen_teller >1){
     aantal_metingen_teller=0;
-    output+=250;
+    output+=10;
   }
     if (output >255){
     aantal_metingen_teller=0;
@@ -49,7 +49,8 @@ void loop() {
   analogWrite(enablePin, abs(output));
 
   // Frequency calculation every 0.5 seconds
-  if (millis() - lastTime >= 100) {
+  if (millis() - lastTime >= 500) {
+
     noInterrupts();
     aantal_metingen_teller +=1;
 
